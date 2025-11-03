@@ -30,7 +30,10 @@ class Implicant {
   Note: No default constructor is provided as an Implicant must be initialized with a list of bits.
   */
 
-  // Copy constructor from a list of bits and an optional set of covered terms
+  // Constructor from a single intger
+  Implicant(int, int);
+
+  // constructor from a list of bits and an optional set of covered terms
   Implicant(const vector<ImplicantBit>&, set<int> = {});
 
   // Copy constructor from another implicant
