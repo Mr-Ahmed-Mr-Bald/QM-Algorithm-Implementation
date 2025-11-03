@@ -1,6 +1,26 @@
 #include "../include/implicant.h"
 
 // Constructors
+Implicant::Implicant(int value, int _numberOfBits) {
+
+  // Validate value
+  assert(value >= 0 && value < (1 << numberOfBits));
+
+  // Set number of bits
+  numberOfBits = _numberOfBits;
+
+  // Add value to the covering set
+  covering.insert(value);
+
+  // Fill bits
+  bits.resize(numberOfBits);
+  for(int idx = numberOfBits - 1; idx >= 0; idx--) {
+    int bit = (value & 1);
+    bits[idx] = (bit == 0 ? ImplicantBit::$zero : ImplicantBit::$one);
+    value >>= 1;
+  }
+}
+
 Implicant::Implicant(const vector<ImplicantBit> &list, set<int> covered_terms) {
 
   // Set number of bits
