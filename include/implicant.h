@@ -1,22 +1,22 @@
 #ifndef IMPLICANT_H
 #define IMPLICANT_H
 
+// Standard Library Includes //
 #include <vector>
 #include <set>
 #include <utility>
 #include <cassert>
+
+// Project Includes //
 #include "../utils/enums.utils.h"
 
+// Namespace Usage //
 using std::vector;
 using std::set;
 using std::pair;
 
-
-// BALD
 class Implicant {
   
-  // TODO: Handle initialization properly
-
   // Member variables //
   int numberOfBits; // Number of bits
   vector<ImplicantBit> bits; // Bits of Implicant
@@ -24,6 +24,10 @@ class Implicant {
 
   // Constructors //
   public:
+
+  /*
+  Note: No default constructor is provided as an Implicant must be initialized with a list of bits.
+  */
 
   // Copy constructor from a list of bits
   Implicant(const vector<ImplicantBit>&);
