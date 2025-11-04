@@ -15,6 +15,7 @@ class QMMinimizer {
   // Member variables //
   int numberOfBits;
   vector<vector<Implicant>> implicant_groups;
+  Expression expression;
 
   // Constructors //
   
@@ -28,7 +29,9 @@ class QMMinimizer {
   // Member functions
   // combine ASKANDRANI
   bool combine(vector<vector<Implicant>>&, vector<vector<Implicant>>&);
-  // bitmask BALD
+  // Petrick BALD
+  // [PIs], [EPIs], [Minimzed expressions as list of implicants]
+  void petrick(const vector<Implicant>&, vector<bool>&, vector<vector<int>>&);
   // minimize
   // [PIs], [EPIs], [EPIs coverage], [Minimzed expressions as list of implicants]
   void minimize(vector<Implicant>&, vector<bool>&, vector<int>&, vector<vector<Implicant>>&); // AMONIOS
