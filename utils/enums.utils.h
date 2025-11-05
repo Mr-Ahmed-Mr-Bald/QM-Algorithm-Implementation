@@ -7,5 +7,4 @@ enum ImplicantBit {
   $dash
 };
 
-
 #endif //ENUMS_UTILS_H
