@@ -7,8 +7,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.obj.d"
   "CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj"
   "CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj.d"
-  "CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj"
-  "CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj.d"
   "CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj"
   "CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj.d"
   "CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj"

@@ -2,7 +2,9 @@
 #define EXPRESSION_H
 
 #include <vector>
+#include <string>
 using std::vector;
+using std::string;
 
 class Expression {
 
@@ -15,7 +17,8 @@ class Expression {
   // Member functions
   public:
   Expression() = default;
-  void read();
+  void read(); // Deprecated - throws error
+  bool read_from_file(const string& filename); // Read from file in required format
   bool evalute(const vector<int>&);
 };
 

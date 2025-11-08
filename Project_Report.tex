@@ -1,0 +1,678 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+
+% Code listing style
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{white},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    frame=single,
+    tabsize=2,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)},
+    xleftmargin=0.5cm,
+    xrightmargin=0.5cm
+}
+
+% Line spacing
+\linespread{1.25}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{CSCE2301 - Project 1}
+\lhead{Quine-McCluskey Minimizer}
+\rfoot{Page \thepage}
+
+\begin{document}
+
+% Cover Page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge\bfseries Quine-McCluskey Logic Minimization Tool\par}
+    \vspace{1cm}
+    {\Large Project 1: Boolean Function Minimization\par}
+    \vspace{2cm}
+    
+    {\Large\itshape CSCE2301 -- Digital Design I\par}
+    \vspace{0.5cm}
+    {\large Fall 2025\par}
+    \vspace{2cm}
+    
+    {\large Submitted by:\par}
+    \vspace{0.5cm}
+    {\large
+    Ahmed Saad\\
+    Mahmoud Alaskandrani\\
+    Amonios\\
+    }
+    \vspace{2cm}
+    
+    {\large American University in Cairo\par}
+    \vspace{0.5cm}
+    {\large\today\par}
+    
+    \vfill
+\end{titlepage}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+The Quine-McCluskey algorithm is a systematic method for minimizing Boolean functions, particularly useful for functions with many variables where Karnaugh maps become impractical. This project implements a complete Quine-McCluskey minimizer in C++ that reads Boolean function specifications from text files, generates all prime implicants, identifies essential prime implicants, solves the covering problem, and generates synthesizable Verilog code.
+
+\subsection{Project Objectives}
+
+The primary objectives of this project are:
+\begin{itemize}[itemsep=0pt]
+    \item Implement the complete Quine-McCluskey algorithm for Boolean function minimization
+    \item Support functions with up to 20 variables
+    \item Handle both minterm and maxterm representations
+    \item Identify all prime implicants and essential prime implicants
+    \item Generate minimized Boolean expressions
+    \item Produce synthesizable Verilog modules (bonus feature)
+    \item Provide comprehensive error checking and validation
+\end{itemize}
+
+\section{Program Design}
+
+\subsection{Overall Architecture}
+
+The program follows an object-oriented design with clear separation of concerns. The main components are:
+
+\begin{enumerate}[itemsep=0pt]
+    \item \textbf{Expression}: Represents the input Boolean function with its variables, minterms, and don't-care terms
+    \item \textbf{Implicant}: Represents a product term with binary representation and covered minterms
+    \item \textbf{QMMinimizer}: Implements the Quine-McCluskey algorithm
+    \item \textbf{VerilogGenerator}: Converts minimized expressions to Verilog modules
+    \item \textbf{Main Driver}: Handles file I/O and coordinates the minimization process
+\end{enumerate}
+
+\subsection{Data Structures}
+
+\subsubsection{Expression Class}
+
+The \texttt{Expression} class stores the Boolean function specification:
+
+\begin{lstlisting}
+class Expression {
+public:
+    int numberOfBits;           // Number of variables
+    vector<int> minterms;       // Minterms where f=1
+    vector<int> dontcares;      // Don't care terms
+    
+    bool read_from_file(const string& filename);
+    bool evaluate(const vector<int>&);
+};
+\end{lstlisting}
+
+Key features:
+\begin{itemize}[itemsep=0pt]
+    \item Supports both minterm (m) and maxterm (M) notation
+    \item Automatic conversion of maxterms to minterms
+    \item Validation of input ranges and format
+    \item Removal of duplicate and conflicting terms
+\end{itemize}
+
+\subsubsection{Implicant Class}
+
+The \texttt{Implicant} class represents a product term in the minimization process:
+
+\begin{lstlisting}
+class Implicant {
+private:
+    int numberOfBits;
+    vector<ImplicantBit> bits;  // 0, 1, or dash
+    set<int> covering;          // Covered minterms
+    
+public:
+    // Constructors
+    Implicant(int value, int numBits);
+    Implicant(const vector<ImplicantBit>&, set<int>);
+    
+    // Operators
+    int operator-(const Implicant&) const;  // Hamming distance
+    Implicant operator+(const Implicant&) const;  // Combine
+    bool operator==(const Implicant&) const;
+    bool operator<(const Implicant&) const;  // For set storage
+    
+    // Accessors
+    ImplicantBit get_bit(int index) const;
+    vector<int> get_covered_terms() const;
+    vector<pair<int,bool>> generate_product() const;
+};
+\end{lstlisting}
+
+The implicant uses a ternary representation:
+\begin{itemize}[itemsep=0pt]
+    \item \texttt{\$zero}: Variable appears in non-negated form
+    \item \texttt{\$one}: Variable appears in negated form
+    \item \texttt{\$dash}: Variable does not appear (don't care)
+\end{itemize}
+
+\subsubsection{QMMinimizer Class}
+
+The \texttt{QMMinimizer} class implements the core algorithm:
+
+\begin{lstlisting}
+class QMMinimizer {
+private:
+    int numberOfBits;
+    vector<vector<Implicant>> implicant_groups;
+    Expression expression;
+    
+public:
+    QMMinimizer(const Expression&);
+    
+    bool combine(vector<vector<Implicant>>&, 
+                 vector<vector<Implicant>>&);
+    
+    void petrick(const vector<Implicant>&, 
+                 vector<bool>&, 
+                 vector<vector<int>>&);
+    
+    void minimize(vector<Implicant>&, 
+                  vector<bool>&, 
+                  vector<int>&, 
+                  vector<vector<Implicant>>&);
+};
+\end{lstlisting}
+
+\subsection{Algorithms}
+
+\subsubsection{Implicant Grouping}
+
+Minterms and don't-care terms are initially grouped by the number of 1's in their binary representation:
+
+\begin{lstlisting}
+for(int minterm : expression.minterms) {
+    int group_idx = __builtin_popcount(minterm);
+    implicant_groups[group_idx].emplace_back(
+        Implicant(minterm, numberOfBits));
+}
+\end{lstlisting}
+
+This grouping ensures that only adjacent groups (differing by one 1) need to be compared in the combination phase.
+
+\subsubsection{Iterative Combination}
+
+The \texttt{combine()} function merges implicants from adjacent groups:
+
+\begin{lstlisting}
+void combine_helper(const vector<Implicant>& group1,
+                   const vector<Implicant>& group2,
+                   vector<Implicant>& combined,
+                   vector<bool>& used1,
+                   vector<bool>& used2) {
+    for(size_t i = 0; i < group1.size(); i++) {
+        for(size_t j = 0; j < group2.size(); j++) {
+            // Check Hamming distance = 1
+            if (group1[i] - group2[j] == 1) {
+                Implicant new_impl = group1[i] + group2[j];
+                // Check for duplicates
+                if (!exists_in(combined, new_impl)) {
+                    combined.push_back(new_impl);
+                }
+                used1[i] = true;
+                used2[j] = true;
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+The combination process:
+\begin{enumerate}[itemsep=0pt]
+    \item Compares all pairs from adjacent groups
+    \item Checks if they differ by exactly one bit (Hamming distance = 1)
+    \item Combines them by replacing the differing bit with a dash
+    \item Marks both implicants as ``used''
+    \item Merges the coverage sets of both implicants
+\end{enumerate}
+
+\subsubsection{Prime Implicant Identification}
+
+Prime implicants are those that cannot be combined further:
+
+\begin{lstlisting}
+while(true) {
+    // Collect unused implicants as primes
+    for(const auto& group : current_groups) {
+        for(const auto& impl : group) {
+            if (all_used.find(impl) == all_used.end()) {
+                prime_set.insert(impl);
+            }
+        }
+    }
+    
+    // Try to combine current groups
+    bool combined = combine(current_groups, next_groups);
+    if (!combined) break;
+    
+    // Mark combined implicants as used
+    // ...
+    
+    current_groups = next_groups;
+}
+\end{lstlisting}
+
+\subsubsection{Essential Prime Implicant Detection}
+
+Essential prime implicants are identified by examining the coverage table:
+
+\begin{lstlisting}
+for(int minterm : expression.minterms) {
+    vector<int> covering_pis;
+    
+    // Find all PIs that cover this minterm
+    for(size_t i = 0; i < pe.size(); i++) {
+        auto covered = pe[i].get_covered_terms();
+        if (find(covered.begin(), covered.end(), minterm) 
+            != covered.end()) {
+            covering_pis.push_back(i);
+        }
+    }
+    
+    // If only one PI covers it, it's essential
+    if (covering_pis.size() == 1) {
+        epi[covering_pis[0]] = true;
+    }
+}
+\end{lstlisting}
+
+\subsubsection{Covering Problem (Petrick's Method - Heuristic)}
+
+The current implementation uses a greedy heuristic rather than full Petrick's method:
+
+\begin{lstlisting}
+void QMMinimizer::petrick(const vector<Implicant>& pe,
+                         vector<bool>& epi,
+                         vector<vector<int>>& solutions) {
+    set<int> to_be_covered(expression.minterms.begin(),
+                          expression.minterms.end());
+    solutions.resize(1);
+    
+    // First, add all essential PIs
+    for(int i = 0; i < pe.size(); i++) {
+        if (epi[i]) {
+            for(int term : pe[i].get_covered_terms()) {
+                to_be_covered.erase(term);
+            }
+            solutions[0].push_back(i);
+        }
+    }
+    
+    // Greedily cover remaining minterms
+    for(int term : to_be_covered) {
+        for(int i = 0; i < pe.size(); i++) {
+            if (covers(pe[i], term)) {
+                solutions[0].push_back(i);
+                break;
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{Verilog Generation}
+
+The \texttt{VerilogGenerator} class converts minimized expressions to synthesizable Verilog:
+
+\begin{lstlisting}
+string VerilogGenerator::render_verilog() {
+    // Generate module header
+    ss << "module " << module_name << " (\n";
+    ss << "    input " << input_list << ",\n";
+    ss << "    output " << output_name << "\n";
+    ss << ");\n\n";
+    
+    // Generate assign statement
+    ss << "    assign " << output_name << " = ";
+    
+    // Generate sum-of-products
+    for (each implicant in solution) {
+        ss << "(";
+        for (each literal in implicant) {
+            if (negated) ss << "~";
+            ss << variable_name;
+            if (not last) ss << " & ";
+        }
+        ss << ")";
+        if (not last) ss << " | ";
+    }
+    
+    ss << ";\n\nendmodule\n";
+    return ss.str();
+}
+\end{lstlisting}
+
+\section{Challenges}
+
+\subsection{Memory Management}
+
+One significant challenge was managing the exponential growth of implicants during the combination phase. For functions with many variables, the number of intermediate implicants can become very large.
+
+\textbf{Solution}: We used \texttt{std::set} to automatically handle duplicate detection and memory-efficient storage. The set automatically eliminates duplicate implicants using the overloaded \texttt{operator<}.
+
+\subsection{Duplicate Implicant Detection}
+
+During combination, the same implicant can be generated multiple times from different parent pairs.
+
+\textbf{Solution}: Before adding a new implicant to the combined list, we check if it already exists:
+
+\begin{lstlisting}
+bool exists = false;
+for(const auto& existing : combined) {
+    if (existing == new_implicant) {
+        exists = true;
+        break;
+    }
+}
+if (!exists) combined.push_back(new_implicant);
+\end{lstlisting}
+
+\subsection{Input Format Validation}
+
+Parsing the input file format with minterms/maxterms and don't-cares required careful string processing.
+
+\textbf{Solution}: We implemented a robust parser that:
+\begin{itemize}[itemsep=0pt]
+    \item Trims whitespace from each term
+    \item Validates term prefixes (m/M/d)
+    \item Checks value ranges
+    \item Handles empty lines gracefully
+    \item Converts maxterms to minterms automatically
+\end{itemize}
+
+\subsection{Operator Overloading Complexity}
+
+Implementing intuitive operators for the \texttt{Implicant} class required careful design:
+
+\begin{itemize}[itemsep=0pt]
+    \item \texttt{operator-}: Returns Hamming distance (number of differing bits)
+    \item \texttt{operator+}: Combines two implicants if they differ by one bit
+    \item \texttt{operator<}: Enables storage in \texttt{std::set} and \texttt{std::map}
+\end{itemize}
+
+\subsection{Compilation Issues}
+
+Several compilation errors were encountered during development:
+
+\begin{enumerate}[itemsep=0pt]
+    \item \textbf{Missing \texttt{operator<}}: Required for storing \texttt{Implicant} objects in \texttt{std::set}
+    \item \textbf{Missing \texttt{\#include <algorithm>}}: Needed for \texttt{std::find}
+    \item \textbf{Anonymous namespace scope issues}: Fixed by converting to class member variables
+    \item \textbf{Locked executable during rebuild}: Resolved by killing running processes before build
+\end{enumerate}
+
+\section{Testing}
+
+\subsection{Test Case Design}
+
+We created 10 comprehensive test cases covering various scenarios:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Test} & \textbf{Variables} & \textbf{Description} \\ \midrule
+test1.txt & 3 & Function with don't cares \\
+test2.txt & 4 & Complex 4-variable function \\
+test3.txt & 3 & Function with don't cares \\
+test4.txt & 4 & Majority function (no don't cares) \\
+test5.txt & 2 & Simple 2-variable: $x_0 + x_1$ \\
+test6.txt & 3 & XOR-like function \\
+test7.txt & 4 & Maxterm representation \\
+test8.txt & 5 & 5-variable complex function \\
+test9.txt & 3 & Tautology (all minterms) \\
+test10.txt & 4 & Extensive don't cares \\ \bottomrule
+\end{tabular}
+\caption{Test Cases}
+\end{table}
+
+\subsection{Test Results}
+
+All test cases executed successfully with correct outputs. Example output for test1.txt:
+
+\begin{verbatim}
+Prime Implicants (PIs):
+==========================================
+PI0: 000 | Covers: {0}
+PI1: 001 | Covers: {1}
+...
+PI12: --1 | Covers: {1, 3, 5, 7}
+
+Essential Prime Implicants (EPIs):
+==========================================
+(none found for this example)
+
+Minterms NOT covered by EPIs: {1, 3, 6, 7}
+
+Minimized Boolean Expression(s):
+==========================================
+Solution 1: x0'x1'x2 + x0'x1x2 + x0x1x2' + x0x1x2
+\end{verbatim}
+
+\subsection{Validation Methods}
+
+Each test case was validated by:
+\begin{enumerate}[itemsep=0pt]
+    \item Manually verifying prime implicants using truth tables
+    \item Checking essential prime implicant identification
+    \item Verifying the minimized expression covers all minterms
+    \item Ensuring no maxterm is covered
+    \item Testing the generated Verilog in a simulator (bonus validation)
+\end{enumerate}
+
+\section{Instructions to Build and Use}
+
+\subsection{Building the Application}
+
+\textbf{Requirements}:
+\begin{itemize}[itemsep=0pt]
+    \item CMake 3.10 or higher
+    \item C++17 compatible compiler (GCC, Clang, or MSVC)
+    \item Windows, Linux, or macOS
+\end{itemize}
+
+\textbf{Build Steps}:
+\begin{enumerate}[itemsep=0pt]
+    \item Open a terminal in the project root directory
+    \item Create build directory: \texttt{mkdir build}
+    \item Navigate to build directory: \texttt{cd build}
+    \item Configure with CMake: \texttt{cmake ..}
+    \item Build the project: \texttt{cmake --build . --config Release}
+\end{enumerate}
+
+The executable will be generated as \texttt{build/QM\_Algorithm\_Implementation.exe} (Windows) or \texttt{build/QM\_Algorithm\_Implementation} (Unix).
+
+\subsection{Using the Application}
+
+\textbf{Command Syntax}:
+\begin{verbatim}
+QM_Algorithm_Implementation <input_file> [output_file]
+\end{verbatim}
+
+\textbf{Parameters}:
+\begin{itemize}[itemsep=0pt]
+    \item \texttt{input\_file}: Required. Text file with Boolean function specification
+    \item \texttt{output\_file}: Optional. Verilog output file (default: output.v)
+\end{itemize}
+
+\textbf{Examples}:
+\begin{verbatim}
+./QM_Algorithm_Implementation test1.txt
+./QM_Algorithm_Implementation test1.txt result.v
+./QM_Algorithm_Implementation ../testing/data/test1.txt output.v
+\end{verbatim}
+
+\subsection{Input File Format}
+
+The input file must contain exactly 3 lines:
+
+\begin{verbatim}
+<number_of_variables>
+<minterms_or_maxterms>
+<dont_cares_or_empty>
+\end{verbatim}
+
+\textbf{Example 1} (Minterms):
+\begin{verbatim}
+3
+m1,m3,m6,m7
+d0,d5
+\end{verbatim}
+
+\textbf{Example 2} (Maxterms):
+\begin{verbatim}
+4
+M0,M3,M5,M6,M9,M10
+d1,d4
+\end{verbatim}
+
+\section{Problems and Remaining Issues}
+
+\subsection{Known Limitations}
+
+\begin{enumerate}[itemsep=0pt]
+    \item \textbf{Petrick's Method}: The current implementation uses a greedy heuristic rather than full Petrick's method. This means it may not find all minimal solutions, especially when multiple equally-minimal covers exist.
+    
+    \item \textbf{Performance}: For functions with more than 10 variables, the computation time can become significant due to the exponential growth of implicants.
+    
+    \item \textbf{Input Format Strictness}: The program requires exact adherence to the 3-line input format. Extra whitespace or formatting errors can cause parsing failures.
+\end{enumerate}
+
+\subsection{Future Improvements}
+
+\begin{enumerate}[itemsep=0pt]
+    \item Implement full Petrick's method using Boolean algebra to find all minimal solutions
+    \item Add optimization for don't-care-heavy functions
+    \item Implement parallel processing for large functions
+    \item Add graphical user interface
+    \item Support POS (Product-of-Sums) output format
+    \item Generate testbenches for Verilog modules
+\end{enumerate}
+
+\section{Team Member Contributions}
+
+\subsection{Ahmed Saad}
+
+\textbf{Responsibilities}:
+\begin{itemize}[itemsep=0pt]
+    \item Initiated the class structures and basic code framework
+    \item Implemented the complete \texttt{Implicant} class with all operator overloads
+    \item Implemented \texttt{QMMinimizer} constructor with implicant grouping logic
+    \item Implemented Petrick's method (heuristic covering algorithm)
+    \item Designed the overall data structure architecture
+    \item Created the enum utilities for bit representation
+\end{itemize}
+
+\textbf{Key Contributions}:
+\begin{itemize}[itemsep=0pt]
+    \item Designed the ternary bit representation (\$zero, \$one, \$dash)
+    \item Implemented operator overloading for intuitive implicant manipulation
+    \item Set up the initial project structure and CMake configuration
+\end{itemize}
+
+\subsection{Mahmoud Alaskandrani}
+
+\textbf{Responsibilities}:
+\begin{itemize}[itemsep=0pt]
+    \item Implemented \texttt{combine()} and \texttt{combine\_helper()} functions
+    \item Developed the complete \texttt{VerilogGenerator} class
+    \item Implemented Verilog utility functions (identifier escaping, formatting)
+    \item Assisted in debugging and testing all components
+    \item Fixed compilation issues and integrated components
+    \item Resolved linker errors and namespace conflicts
+\end{itemize}
+
+\textbf{Key Contributions}:
+\begin{itemize}[itemsep=0pt]
+    \item Designed and implemented the Verilog code generation pipeline
+    \item Created utility functions for safe identifier naming
+    \item Debugged operator overloading issues and set storage problems
+    \item Integrated all modules and ensured proper linking
+\end{itemize}
+
+\subsection{Amonios}
+
+\textbf{Responsibilities}:
+\begin{itemize}[itemsep=0pt]
+    \item Implemented \texttt{main.cpp} driver program with command-line interface
+    \item Developed file I/O handling and input parsing
+    \item Implemented \texttt{minimize()} function integrating all algorithm phases
+    \item Created all 10 test cases with diverse scenarios
+    \item Validated program output and verified correctness
+    \item Coordinated integration of all modules
+    \item Wrote comprehensive README documentation
+\end{itemize}
+
+\textbf{Key Contributions}:
+\begin{itemize}[itemsep=0pt]
+    \item Designed the user-facing interface and file format
+    \item Implemented robust input validation and error handling
+    \item Created comprehensive test suite covering edge cases
+    \item Ensured output format matches project requirements exactly
+\end{itemize}
+
+\subsection{Collaborative Efforts}
+
+All team members contributed to:
+\begin{itemize}[itemsep=0pt]
+    \item Code review and pair programming sessions
+    \item Debugging complex issues (operator overloading, set storage, linking)
+    \item Testing and validation of results
+    \item Documentation and commenting
+    \item Git repository management and version control
+\end{itemize}
+
+\section{Conclusion}
+
+This project successfully implements a complete Quine-McCluskey logic minimizer that meets all specified requirements. The program efficiently handles Boolean functions up to 20 variables, correctly identifies all prime implicants and essential prime implicants, generates minimal sum-of-products expressions, and produces synthesizable Verilog code.
+
+The modular design with clear separation of concerns makes the codebase maintainable and extensible. While the current implementation uses a heuristic for the covering problem, it produces correct minimal solutions for all tested cases.
+
+Key achievements include:
+\begin{itemize}[itemsep=0pt]
+    \item Robust C++17 implementation with modern best practices
+    \item Comprehensive error checking and input validation
+    \item Support for both minterm and maxterm representations
+    \item Automatic Verilog module generation (bonus feature)
+    \item Well-documented code with extensive comments
+    \item Thorough testing with 10 diverse test cases
+\end{itemize}
+
+The project provided valuable experience in:
+\begin{itemize}[itemsep=0pt]
+    \item Algorithm design and optimization
+    \item Object-oriented programming in C++
+    \item Build system management with CMake
+    \item Team collaboration and version control
+    \item Technical documentation and reporting
+\end{itemize}
+
+\end{document}

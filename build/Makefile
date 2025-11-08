@@ -224,30 +224,6 @@ src/qm-minimizer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\QM_Algorithm_Implementation.dir\build.make CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.s
 .PHONY : src/qm-minimizer.cpp.s
 
-src/quine-mccluskey-driver.obj: src/quine-mccluskey-driver.cpp.obj
-.PHONY : src/quine-mccluskey-driver.obj
-
-# target to build an object file
-src/quine-mccluskey-driver.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\QM_Algorithm_Implementation.dir\build.make CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj
-.PHONY : src/quine-mccluskey-driver.cpp.obj
-
-src/quine-mccluskey-driver.i: src/quine-mccluskey-driver.cpp.i
-.PHONY : src/quine-mccluskey-driver.i
-
-# target to preprocess a source file
-src/quine-mccluskey-driver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\QM_Algorithm_Implementation.dir\build.make CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.i
-.PHONY : src/quine-mccluskey-driver.cpp.i
-
-src/quine-mccluskey-driver.s: src/quine-mccluskey-driver.cpp.s
-.PHONY : src/quine-mccluskey-driver.s
-
-# target to generate assembly for a file
-src/quine-mccluskey-driver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\QM_Algorithm_Implementation.dir\build.make CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.s
-.PHONY : src/quine-mccluskey-driver.cpp.s
-
 src/verilog-generator.obj: src/verilog-generator.cpp.obj
 .PHONY : src/verilog-generator.obj
 
@@ -317,9 +293,6 @@ help:
 	@echo ... src/qm-minimizer.obj
 	@echo ... src/qm-minimizer.i
 	@echo ... src/qm-minimizer.s
-	@echo ... src/quine-mccluskey-driver.obj
-	@echo ... src/quine-mccluskey-driver.i
-	@echo ... src/quine-mccluskey-driver.s
 	@echo ... src/verilog-generator.obj
 	@echo ... src/verilog-generator.i
 	@echo ... src/verilog-generator.s

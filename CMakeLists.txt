@@ -17,7 +17,6 @@ set(SOURCES
     src/implicant.cpp
     src/qm-minimizer.cpp
     src/verilog-generator.cpp
-    src/quine-mccluskey-driver.cpp
     utils/verilog_utils.cpp
 )
 
@@ -27,7 +26,6 @@ set(HEADERS
     include/implicant.h
     include/qm-minimizer.h
     include/verilog-generator.h
-    include/quine-mccluskey-driver.h
     utils/enums.utils.h
     utils/verilog_utils.h
 )

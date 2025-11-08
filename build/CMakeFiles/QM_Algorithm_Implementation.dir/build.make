@@ -146,26 +146,11 @@ CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.s: cmake_fo
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.s"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\verilog-generator.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\verilog-generator.cpp.s
 
-CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/flags.make
-CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp
-CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj: C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/quine-mccluskey-driver.cpp
-CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\quine-mccluskey-driver.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\quine-mccluskey-driver.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\quine-mccluskey-driver.cpp
-
-CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.i"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\quine-mccluskey-driver.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\quine-mccluskey-driver.cpp.i
-
-CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.s"
-	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\quine-mccluskey-driver.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\quine-mccluskey-driver.cpp.s
-
 CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/flags.make
 CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp
 CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj: C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/utils/verilog_utils.cpp
 CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\utils\verilog_utils.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\utils\verilog_utils.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\utils\verilog_utils.cpp
 
 CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.i: cmake_force
@@ -183,7 +168,6 @@ QM_Algorithm_Implementation_OBJECTS = \
 "CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj" \
 "CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj" \
 "CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj" \
-"CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj" \
 "CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj"
 
 # External object files for target QM_Algorithm_Implementation
@@ -194,13 +178,12 @@ QM_Algorithm_Implementation.exe: CMakeFiles/QM_Algorithm_Implementation.dir/src/
 QM_Algorithm_Implementation.exe: CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj
 QM_Algorithm_Implementation.exe: CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj
 QM_Algorithm_Implementation.exe: CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj
-QM_Algorithm_Implementation.exe: CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj
 QM_Algorithm_Implementation.exe: CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj
 QM_Algorithm_Implementation.exe: CMakeFiles/QM_Algorithm_Implementation.dir/build.make
 QM_Algorithm_Implementation.exe: CMakeFiles/QM_Algorithm_Implementation.dir/linkLibs.rsp
 QM_Algorithm_Implementation.exe: CMakeFiles/QM_Algorithm_Implementation.dir/objects1.rsp
 QM_Algorithm_Implementation.exe: CMakeFiles/QM_Algorithm_Implementation.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable QM_Algorithm_Implementation.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable QM_Algorithm_Implementation.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\QM_Algorithm_Implementation.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
