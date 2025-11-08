@@ -4,7 +4,6 @@
 #include <vector>
 using std::vector;
 
-// AMONIOS
 class Expression {
 
   // TODO: Handle initialization properly
