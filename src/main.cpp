@@ -1,4 +1,4 @@
-#include "include/quine-mccluskey-driver.h"
+#include "quine-mccluskey-driver.h"
 
 int main() {
     QuineMcCluskeyDriver driver;

@@ -63,6 +63,14 @@ bool Implicant::operator!=(const Implicant &other) const {
   return bits != other.bits;
 }
 
+bool Implicant::operator<(const Implicant &other) const {
+  // Lexicographic comparison of bits for use in sorted containers
+  if (numberOfBits != other.numberOfBits) {
+    return numberOfBits < other.numberOfBits;
+  }
+  return bits < other.bits;
+}
+
 int Implicant::operator-(const Implicant &other) const {
   // Both implicants must have the same number of bits
   assert(numberOfBits == other.numberOfBits);
