@@ -1,32 +1,57 @@
 #include "../include/quine-mccluskey-driver.h"
 #include "../include/qm-minimizer.h"
 #include "../include/verilog-generator.h"
+#include "../include/file-parser.h"
 #include <iostream>
 #include <fstream>
+#include <iomanip>
+#include <set>
 
 using namespace std;
 
 QuineMcCluskeyDriver::QuineMcCluskeyDriver() 
     : expression_loaded(false), minimization_done(false) {}
 
-void QuineMcCluskeyDriver::read_expression() {
-    cout << "\n--- Enter Boolean Expression ---\n";
-    expression.read();
+bool QuineMcCluskeyDriver::load_from_file(const string& filename) {
+    cout << "Reading input file: " << filename << "\n";
+    
+    if (!FileParser::parse_file(filename, expression)) {
+        return false;
+    }
+    
     expression_loaded = true;
     minimization_done = false;
     
-    cout << "\n✓ Expression entered successfully!\n";
-    cout << "Number of bits: " << expression.numberOfBits << "\n";
-    cout << "Minterms: ";
-    for(int m : expression.minterms) cout << m << " ";
-    cout << "\nDon't cares: ";
-    for(int d : expression.dontcares) cout << d << " ";
+    cout << "✓ File loaded successfully!\n";
+    cout << "  Number of variables: " << expression.numberOfBits << "\n";
+    cout << "  Minterms: ";
+    for(size_t i = 0; i < expression.minterms.size(); i++) {
+        cout << expression.minterms[i];
+        if (i < expression.minterms.size() - 1) cout << ", ";
+    }
+    cout << "\n  Don't cares: ";
+    if (expression.dontcares.empty()) {
+        cout << "none";
+    } else {
+        for(size_t i = 0; i < expression.dontcares.size(); i++) {
+            cout << expression.dontcares[i];
+            if (i < expression.dontcares.size() - 1) cout << ", ";
+        }
+    }
     cout << "\n";
+    
+    return true;
+}
+
+void QuineMcCluskeyDriver::read_expression_interactive() {
+    expression.read();
+    expression_loaded = true;
+    minimization_done = false;
 }
 
 void QuineMcCluskeyDriver::run_minimization() {
     if (!expression_loaded) {
-        cout << "\n✗ Error: Please enter an expression first!\n";
+        cout << "✗ Error: No expression loaded!\n";
         return;
     }
 
@@ -56,134 +81,205 @@ void QuineMcCluskeyDriver::run_minimization() {
         solution_indices.push_back(indices);
     }
     
+    calculate_uncovered_minterms();
+    
     minimization_done = true;
-    cout << "\n✓ Minimization completed!\n";
-    cout << "Found " << prime_implicants.size() << " prime implicants\n";
-    cout << "Found " << minimized_expressions.size() << " minimal solution(s)\n";
+    cout << "✓ Minimization completed!\n";
 }
 
-void QuineMcCluskeyDriver::display_results() const {
+void QuineMcCluskeyDriver::calculate_uncovered_minterms() {
+    uncovered_minterms.clear();
+    set<int> covered;
+    
+    for(size_t i = 0; i < prime_implicants.size(); i++) {
+        if (essential_pis[i]) {
+            auto terms = prime_implicants[i].get_covered_terms();
+            for(int t : terms) {
+                covered.insert(t);
+            }
+        }
+    }
+    
+    for(int m : expression.minterms) {
+        if (covered.find(m) == covered.end()) {
+            uncovered_minterms.push_back(m);
+        }
+    }
+}
+
+// Requirement 2: Generate and print all prime implicants
+void QuineMcCluskeyDriver::display_prime_implicants() const {
     if (!minimization_done) {
-        cout << "\n✗ Error: Please run minimization first!\n";
+        cout << "✗ Error: Run minimization first!\n";
         return;
     }
-
-    cout << "\n========== MINIMIZATION RESULTS ==========\n\n";
     
-    // Display prime implicants
-    cout << "Prime Implicants:\n";
+    cout << "\n" << string(70, '=') << "\n";
+    cout << "2. PRIME IMPLICANTS\n";
+    cout << string(70, '=') << "\n";
+    cout << left << setw(5) << "PI#" 
+         << setw(15) << "Binary" 
+         << setw(20) << "Algebraic"
+         << "Covers Minterms\n";
+    cout << string(70, '-') << "\n";
+    
     for(size_t i = 0; i < prime_implicants.size(); i++) {
-        cout << "PI" << i << ": ";
+        cout << setw(5) << i;
         
-        // Print implicant bits
+        // Binary representation
+        string binary;
         for(int j = 0; j < prime_implicants[i].get_number_of_bits(); j++) {
             ImplicantBit bit = prime_implicants[i].get_bit(j);
-            if (bit == ImplicantBit::$zero) cout << "0";
-            else if (bit == ImplicantBit::$one) cout << "1";
-            else cout << "-";
+            if (bit == ImplicantBit::$zero) binary += "0";
+            else if (bit == ImplicantBit::$one) binary += "1";
+            else binary += "-";
         }
+        cout << setw(15) << binary;
         
-        // Print covered terms
+        // Algebraic form
+        auto product = prime_implicants[i].generate_product();
+        string algebra;
+        if (product.empty()) {
+            algebra = "1";
+        } else {
+            for(size_t j = 0; j < product.size(); j++) {
+                char var = 'A' + product[j].first;
+                algebra += var;
+                if (product[j].second) algebra += "'";
+            }
+        }
+        cout << setw(20) << algebra;
+        
+        // Covered terms
         vector<int> terms = prime_implicants[i].get_covered_terms();
-        cout << " (";
+        cout << "{";
         for(size_t j = 0; j < terms.size(); j++) {
             cout << terms[j];
             if (j < terms.size() - 1) cout << ", ";
         }
-        cout << ")";
+        cout << "}";
         
         if (essential_pis[i]) cout << " [ESSENTIAL]";
         cout << "\n";
     }
+    cout << string(70, '=') << "\n";
+}
+
+// Requirement 3: Essential PIs and uncovered minterms
+void QuineMcCluskeyDriver::display_essential_pis() const {
+    if (!minimization_done) {
+        cout << "✗ Error: Run minimization first!\n";
+        return;
+    }
     
-    // Display minimized expressions
-    cout << "\nMinimized Expression(s):\n";
-    for(size_t sol = 0; sol < minimized_expressions.size(); sol++) {
-        cout << "Solution " << (sol + 1) << ": ";
-        bool first = true;
-        for(const auto &impl : minimized_expressions[sol]) {
-            if (!first) cout << " + ";
-            first = false;
-            
-            auto product = impl.generate_product();
+    cout << "\n" << string(70, '=') << "\n";
+    cout << "3. ESSENTIAL PRIME IMPLICANTS\n";
+    cout << string(70, '=') << "\n";
+    
+    bool found = false;
+    for(size_t i = 0; i < prime_implicants.size(); i++) {
+        if (essential_pis[i]) {
+            found = true;
+            auto product = prime_implicants[i].generate_product();
             if (product.empty()) {
-                cout << "1";
+                cout << "   1";
             } else {
+                cout << "   ";
                 for(size_t j = 0; j < product.size(); j++) {
-                    if (product[j].second) cout << "x" << product[j].first << "'";
-                    else cout << "x" << product[j].first;
+                    char var = 'A' + product[j].first;
+                    cout << var;
+                    if (product[j].second) cout << "'";
                 }
             }
+            cout << "\n";
         }
-        cout << "\n";
     }
-    cout << "==========================================\n";
+    
+    if (!found) {
+        cout << "   No essential prime implicants\n";
+    }
+    
+    cout << "\nMinterms not covered by EPIs: ";
+    if (uncovered_minterms.empty()) {
+        cout << "None (all covered)\n";
+    } else {
+        cout << "{";
+        for(size_t i = 0; i < uncovered_minterms.size(); i++) {
+            cout << uncovered_minterms[i];
+            if (i < uncovered_minterms.size() - 1) cout << ", ";
+        }
+        cout << "}\n";
+    }
+    cout << string(70, '=') << "\n";
+}
+
+// Requirement 4: Print minimized Boolean expression
+void QuineMcCluskeyDriver::display_minimized_expressions() const {
+    if (!minimization_done) {
+        cout << "✗ Error: Run minimization first!\n";
+        return;
+    }
+    
+    cout << "\n" << string(70, '=') << "\n";
+    cout << "4. MINIMIZED BOOLEAN EXPRESSIONS\n";
+    cout << string(70, '=') << "\n";
+    
+    if (minimized_expressions.empty()) {
+        cout << "   F = 0 (no valid solutions)\n";
+    } else {
+        for(size_t sol = 0; sol < minimized_expressions.size(); sol++) {
+            cout << "Solution " << (sol + 1) << ": F = ";
+            
+            if (minimized_expressions[sol].empty()) {
+                cout << "0";
+            } else {
+                for(size_t i = 0; i < minimized_expressions[sol].size(); i++) {
+                    auto product = minimized_expressions[sol][i].generate_product();
+                    if (product.empty()) {
+                        cout << "1";
+                    } else {
+                        for(size_t j = 0; j < product.size(); j++) {
+                            char var = 'A' + product[j].first;
+                            cout << var;
+                            if (product[j].second) cout << "'";
+                        }
+                    }
+                    if (i < minimized_expressions[sol].size() - 1) cout << " + ";
+                }
+            }
+            cout << "\n";
+        }
+    }
+    cout << string(70, '=') << "\n";
+}
+
+void QuineMcCluskeyDriver::display_all_results() const {
+    display_prime_implicants();
+    display_essential_pis();
+    display_minimized_expressions();
 }
 
 void QuineMcCluskeyDriver::generate_verilog(const string& filename) {
     if (!minimization_done) {
-        cout << "\n✗ Error: Please run minimization first!\n";
+        cout << "✗ Error: Run minimization first!\n";
         return;
     }
 
-    cout << "\n--- Verilog Generation ---\n";
-    
-    string module_name, output_name;
-    int style_choice;
-    
-    cout << "Enter module name (default: minimized_module): ";
-    cin.ignore();
-    getline(cin, module_name);
-    if (module_name.empty()) module_name = "minimized_module";
-    
-    cout << "Enter output name (default: f): ";
-    getline(cin, output_name);
-    if (output_name.empty()) output_name = "f";
-    
-    cout << "\nSelect output style:\n";
-    cout << "1. Assign statement\n";
-    cout << "2. Always block\n";
-    cout << "3. Case statement\n";
-    cout << "Choice: ";
-    cin >> style_choice;
-    
     VerilogGenerator vgen(expression, prime_implicants, solution_indices);
-    vgen.set_module_name(module_name);
-    vgen.set_output_name(output_name);
-    
-    switch(style_choice) {
-        case 1: vgen.set_output_style(VerilogGenerator::OutputStyle::Assign); break;
-        case 2: vgen.set_output_style(VerilogGenerator::OutputStyle::Always); break;
-        case 3: vgen.set_output_style(VerilogGenerator::OutputStyle::Case); break;
-        default: vgen.set_output_style(VerilogGenerator::OutputStyle::Assign);
-    }
     
     string verilog_code = vgen.render_verilog();
-    cout << "\n========== Generated Verilog Module ==========\n";
+    cout << "\n" << string(70, '=') << "\n";
+    cout << "5. VERILOG MODULE (BONUS)\n";
+    cout << string(70, '=') << "\n";
     cout << verilog_code;
-    cout << "==============================================\n";
+    cout << string(70, '=') << "\n";
     
-    // Save to file
-    string save_filename = filename;
-    if (save_filename.empty()) {
-        char save_choice;
-        cout << "\nSave to file? (y/n): ";
-        cin >> save_choice;
-        
-        if (save_choice == 'y' || save_choice == 'Y') {
-            cout << "Enter filename (e.g., module.v): ";
-            cin >> save_filename;
-        }
-    }
-    
-    if (!save_filename.empty()) {
-        ofstream outfile(save_filename);
+    if (!filename.empty()) {
+        ofstream outfile(filename);
         if (outfile.is_open()) {
             vgen.write_to_file(outfile);
             outfile.close();
-            cout << "✓ Verilog module saved to " << save_filename << "\n";
-        } else {
-            cout << "✗ Error: Could not open file for writing\n";
+            cout << "✓ Verilog saved to: " << filename << "\n";
         }
     }
 }
@@ -198,39 +294,69 @@ void QuineMcCluskeyDriver::reset() {
     solution_indices.clear();
 }
 
+void QuineMcCluskeyDriver::run_batch(const string& input_file, const string& output_file) {
+    cout << "\n=== BATCH MODE ===\n";
+    
+    if (!load_from_file(input_file)) {
+        return;
+    }
+    
+    run_minimization();
+    display_all_results();
+    
+    if (!output_file.empty()) {
+        generate_verilog(output_file);
+    }
+}
+
 void QuineMcCluskeyDriver::run_interactive() {
-    cout << "╔════════════════════════════════════════════════╗\n";
-    cout << "║     Quine-McCluskey Boolean Minimizer         ║\n";
-    cout << "║     Digital Logic Design Project              ║\n";
-    cout << "╚════════════════════════════════════════════════╝\n";
+    cout << "\n";
+    cout << "=====Quine-McCluskey Boolean Minimizer=====\n";
+    cout << "\n";
 
     int choice;
     while(true) {
-        cout << "\n========== Quine-McCluskey Minimizer ==========\n";
-        cout << "1. Enter Boolean Expression\n";
-        cout << "2. Run Minimization\n";
-        cout << "3. Display Results\n";
-        cout << "4. Generate Verilog Module\n";
-        cout << "5. Reset\n";
+        cout << "\n========== Main Menu ==========\n";
+        cout << "1. Load expression from file\n";
+        cout << "2. Enter expression manually\n";
+        cout << "3. Run minimization\n";
+        cout << "4. Display results\n";
+        cout << "5. Generate Verilog\n";
         cout << "6. Exit\n";
-        cout << "===============================================\n";
-        cout << "Enter your choice: ";
+        cout << "===============================\n";
+        cout << "Choice: ";
         cin >> choice;
 
         switch(choice) {
-            case 1: read_expression(); break;
-            case 2: run_minimization(); break;
-            case 3: display_results(); break;
-            case 4: generate_verilog(); break;
-            case 5: 
-                reset();
-                cout << "\n✓ System reset. Ready for new expression.\n";
+            case 1: {
+                string filename;
+                cout << "Enter filename: ";
+                cin >> filename;
+                load_from_file(filename);
                 break;
+            }
+            case 2:
+                read_expression_interactive();
+                break;
+            case 3:
+                run_minimization();
+                break;
+            case 4:
+                display_all_results();
+                break;
+            case 5: {
+                string filename;
+                cout << "Enter output filename (or press Enter to skip): ";
+                cin.ignore();
+                getline(cin, filename);
+                generate_verilog(filename);
+                break;
+            }
             case 6:
-                cout << "\nThank you for using QM Minimizer!\n";
+                cout << "\nThank you!\n";
                 return;
             default:
-                cout << "\n✗ Invalid choice! Please try again.\n";
+                cout << "Invalid choice!\n";
         }
     }
 }

@@ -1,13 +1,11 @@
 #include "../include/implicant.h"
 
-// Constructors
 Implicant::Implicant(int value, int _numberOfBits) {
-
-  // Validate value
-  assert(value >= 0 && value < (1 << numberOfBits));
-
-  // Set number of bits
+  // Set number of bits FIRST
   numberOfBits = _numberOfBits;
+
+  // validate value (after numberOfBits is set)
+  assert(value >= 0 && value < (1 << numberOfBits));
 
   // Add value to the covering set
   covering.insert(value);
