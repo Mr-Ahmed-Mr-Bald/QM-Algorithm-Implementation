@@ -54,6 +54,9 @@ class Implicant {
   // Compares two implicants for inequality
   bool operator!=(const Implicant&) const;
 
+  // Less than operator (for use in sorted containers like set/map)
+  bool operator<(const Implicant&) const;
+
   // Returns the number of differing bits between two implicants
   int operator-(const Implicant&) const;
   int operator-=(const Implicant&);

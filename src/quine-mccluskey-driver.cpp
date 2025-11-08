@@ -72,7 +72,6 @@ void QuineMcCluskeyDriver::display_results() const {
     
     // Display prime implicants
     cout << "Prime Implicants:\n";
-    cout << "─────────────────────────────────────────\n";
     for(size_t i = 0; i < prime_implicants.size(); i++) {
         cout << "PI" << i << ": ";
         
@@ -99,7 +98,6 @@ void QuineMcCluskeyDriver::display_results() const {
     
     // Display minimized expressions
     cout << "\nMinimized Expression(s):\n";
-    cout << "─────────────────────────────────────────\n";
     for(size_t sol = 0; sol < minimized_expressions.size(); sol++) {
         cout << "Solution " << (sol + 1) << ": ";
         bool first = true;

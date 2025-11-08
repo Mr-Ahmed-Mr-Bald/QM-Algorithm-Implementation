@@ -19,6 +19,15 @@ using std::ofstream;
 using std::vector;
 
 class VerilogGenerator {
+public:
+  // Different styles for how we want the Verilog output to look
+  enum class OutputStyle {
+    Assign,   // Basic style: "assign f = <expr>;"
+    Always,   // Uses always block: "always @(*) f = <expr>;"
+    Case      // Case-based style (good for wide outputs)
+  };
+
+private:
   // === Member variables ===
 
   // Stores the original boolean expression (main info like input count, etc.)
@@ -36,14 +45,13 @@ class VerilogGenerator {
   string output_name = "f";
   string input_prefix = "x";
 
-public:
-  // Different styles for how we want the Verilog output to look
-  enum class OutputStyle {
-    Assign,   // Basic style: "assign f = <expr>;"
-    Always,   // Uses always block: "always @(*) f = <expr>;"
-    Case      // Case-based style (good for wide outputs)
-  };
+  // Output style preference
+  OutputStyle output_style = OutputStyle::Assign;
 
+  // Custom input names (if set, overrides input_prefix)
+  vector<string> custom_input_names;
+
+public:
   // === Constructors ===
 
   // No default constructor – we need an expression and implicants to work with
@@ -89,6 +97,10 @@ public:
   // Turns an implicant into a valid Verilog expression
   // (e.g., A'B + BC' => (~A & B) | (B & ~C))
   static string implicant_to_verilog_expr(const Implicant &imp, const vector<string> &input_names);
+
+private:
+  // Helper to get the current input names list (either custom or generated from prefix)
+  vector<string> get_input_names_list() const;
 };
 
 // Inline convenience wrapper: formats an `assign` statement using the RHS

@@ -2,50 +2,68 @@
 #include <iostream>
 #include <algorithm>
 #include <cassert>
+#include <sstream>
+#include <string>
 
 using std::cin;
 using std::cout;
 using std::endl;
+using std::string;
 
 void Expression::read() {
   // Read number of bits
   cout << "Enter number of bits: ";
   cin >> numberOfBits;
+  cin.ignore(1000, '\n'); // Clear the newline
   
   // Validate number of bits
-  assert(numberOfBits > 0 && numberOfBits <= 20); // Reasonable upper limit
-  
-  // Read number of minterms
-  int numMinterms;
-  cout << "Enter number of minterms: ";
-  cin >> numMinterms;
+  if (numberOfBits <= 0 || numberOfBits > 20) {
+    cout << "Error: Number of bits must be between 1 and 20\n";
+    numberOfBits = 3; // Default
+  }
   
   // Read minterms
-  cout << "Enter minterms (space-separated): ";
-  minterms.resize(numMinterms);
-  for(int i = 0; i < numMinterms; i++) {
-    cin >> minterms[i];
+  cout << "Enter minterms (space-separated, e.g., '0 2 5 7'): ";
+  string minterm_line;
+  std::getline(cin, minterm_line);
+  std::istringstream minterm_stream(minterm_line);
+  
+  minterms.clear();
+  int minterm;
+  while (minterm_stream >> minterm) {
     // Validate minterm is within valid range
-    assert(minterms[i] >= 0 && minterms[i] < (1 << numberOfBits));
+    if (minterm >= 0 && minterm < (1 << numberOfBits)) {
+      minterms.push_back(minterm);
+    } else {
+      cout << "Warning: Minterm " << minterm << " is out of range and will be ignored.\n";
+    }
+  }
+  
+  if (minterms.empty()) {
+    cout << "Warning: No valid minterms entered. Using default: 0\n";
+    minterms.push_back(0);
   }
   
   // Remove duplicates from minterms
   std::sort(minterms.begin(), minterms.end());
   minterms.erase(std::unique(minterms.begin(), minterms.end()), minterms.end());
   
-  // Read number of don't cares
-  int numDontCares;
-  cout << "Enter number of don't cares: ";
-  cin >> numDontCares;
-  
   // Read don't cares
-  if(numDontCares > 0) {
-    cout << "Enter don't cares (space-separated): ";
-    dontcares.resize(numDontCares);
-    for(int i = 0; i < numDontCares; i++) {
-      cin >> dontcares[i];
+  cout << "Enter don't cares (space-separated, or press Enter to skip): ";
+  string dontcare_line;
+  std::getline(cin, dontcare_line);
+  
+  dontcares.clear();
+  if (!dontcare_line.empty()) {
+    std::istringstream dontcare_stream(dontcare_line);
+    int dontcare;
+    while (dontcare_stream >> dontcare) {
       // Validate don't care is within valid range
-      assert(dontcares[i] >= 0 && dontcares[i] < (1 << numberOfBits));
+      if (dontcare >= 0 && dontcare < (1 << numberOfBits)) {
+        dontcares.push_back(dontcare);
+      } else {
+        cout << "Warning: Don't care " << dontcare << " is out of range and will be ignored.\n";
+      }
     }
     
     // Remove duplicates from don't cares

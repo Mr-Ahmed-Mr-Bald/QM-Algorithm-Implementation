@@ -5,16 +5,11 @@
 
 using std::stringstream;
 
-// Private member to store output style
-namespace {
-  VerilogGenerator::OutputStyle current_style = VerilogGenerator::OutputStyle::Assign;
-  vector<string> custom_input_names;
-}
-
 // Constructor
 VerilogGenerator::VerilogGenerator(const Expression &Ex, const vector<Implicant> &_pe, 
                                 const vector<vector<int>> &_solutions)
-    : main_ex(Ex), pe(_pe), solutions(_solutions) {
+    : main_ex(Ex), pe(_pe), solutions(_solutions), 
+      output_style(OutputStyle::Assign) {
   // Validate that we have valid data
   assert(main_ex.numberOfBits > 0);
 }
@@ -43,7 +38,7 @@ void VerilogGenerator::set_input_names(const vector<string> &names) {
 }
 
 void VerilogGenerator::set_output_style(OutputStyle style) {
-  current_style = style;
+  output_style = style;
 }
 
 // Info methods
@@ -56,14 +51,14 @@ int VerilogGenerator::get_number_of_solutions() const {
 }
 
 // Helper to get input names
-vector<string> get_input_names_list(int numBits, const string &prefix) {
+vector<string> VerilogGenerator::get_input_names_list() const {
   if (!custom_input_names.empty()) {
     return custom_input_names;
   }
   
   vector<string> names;
-  for(int i = 0; i < numBits; i++) {
-    names.push_back(VerilogUtils::escape_identifier(prefix + std::to_string(i)));
+  for(int i = 0; i < main_ex.numberOfBits; i++) {
+    names.push_back(VerilogUtils::escape_identifier(input_prefix + std::to_string(i)));
   }
   return names;
 }
@@ -110,7 +105,7 @@ string VerilogGenerator::render_solution_expression(int index) const {
     return "1'b0"; // Empty solution means always false
   }
   
-  vector<string> input_names = get_input_names_list(main_ex.numberOfBits, input_prefix);
+  vector<string> input_names = get_input_names_list();
   
   stringstream ss;
   bool first = true;
@@ -156,7 +151,7 @@ string VerilogGenerator::render_all_solutions_comments() {
 string VerilogGenerator::render_verilog() {
   stringstream ss;
   
-  vector<string> input_names = get_input_names_list(main_ex.numberOfBits, input_prefix);
+  vector<string> input_names = get_input_names_list();
   string escaped_output = VerilogUtils::escape_identifier(output_name);
   string escaped_module = VerilogUtils::escape_identifier(module_name);
   
@@ -175,7 +170,7 @@ string VerilogGenerator::render_verilog() {
   
   // Output declaration
   ss << "    output ";
-  if (current_style == OutputStyle::Always) {
+  if (output_style == OutputStyle::Always) {
     ss << "reg ";
   }
   ss << escaped_output << "\n";
@@ -189,7 +184,7 @@ string VerilogGenerator::render_verilog() {
   // Generate logic based on style
   if (solutions.empty() || solutions[0].empty()) {
     // No solution - output always 0
-    if (current_style == OutputStyle::Always) {
+    if (output_style == OutputStyle::Always) {
       ss << "    always @(*) begin\n";
       ss << "        " << escaped_output << " = 1'b0;\n";
       ss << "    end\n";
@@ -199,7 +194,7 @@ string VerilogGenerator::render_verilog() {
   } else {
     string expr = render_solution_expression(0);
     
-    switch(current_style) {
+    switch(output_style) {
       case OutputStyle::Assign:
         ss << "    assign " << escaped_output << " = " << expr << ";\n";
         break;
