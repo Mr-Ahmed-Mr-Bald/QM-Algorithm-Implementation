@@ -105,78 +105,79 @@ bool QMMinimizer::combine(vector<vector<Implicant>> &current_groups,
   return any_combined;
 }
 
-// Main minimization algorithm
 void QMMinimizer::minimize(vector<Implicant> &pe, vector<bool> &epi, 
                           vector<int> &epi_coverage, 
                           vector<vector<Implicant>> &minimized_expressions) {
   // Step 1: Generate all prime implicants through iterative combination
   vector<vector<Implicant>> current_groups = implicant_groups;
   vector<vector<Implicant>> next_groups;
-  set<Implicant> prime_set;
   
-  // Track all implicants that were used (combined)
-  set<Implicant> all_used;
+  // Track which implicants at each level were successfully combined
+  set<Implicant> all_primes;
   
   while(true) {
-    // Collect unused implicants as potential primes
-    for(const auto &group : current_groups) {
-      for(const auto &impl : group) {
-        if (all_used.find(impl) == all_used.end()) {
-          prime_set.insert(impl);
-        }
-      }
-    }
+    next_groups.clear();
+    next_groups.resize(current_groups.size() > 0 ? current_groups.size() - 1 : 0);
     
-    // Try to combine current groups
-    bool combined = combine(current_groups, next_groups);
+    // Track which implicants were combined in this iteration
+    vector<set<int>> used_in_groups(current_groups.size());
     
-    if (!combined) {
-      break; // No more combinations possible
-    }
+    bool any_combined = false;
     
-    // Mark combined implicants as used
-    for(const auto &group : current_groups) {
-      for(const auto &impl : group) {
-        // Check if this implicant appears in next_groups
-        bool used = false;
-        for(const auto &next_group : next_groups) {
-          for(const auto &next_impl : next_group) {
-            // Check if impl was used to create next_impl
-            auto terms1 = impl.get_covered_terms();
-            auto terms2 = next_impl.get_covered_terms();
-            bool subset = true;
-            for(int t : terms1) {
-              if (std::find(terms2.begin(), terms2.end(), t) == terms2.end()) {
-                subset = false;
+    // Try to combine adjacent groups
+    for(size_t i = 0; i < current_groups.size() - 1; i++) {
+      const auto &group1 = current_groups[i];
+      const auto &group2 = current_groups[i + 1];
+      
+      for(size_t j = 0; j < group1.size(); j++) {
+        for(size_t k = 0; k < group2.size(); k++) {
+          // Check if they differ by exactly one bit
+          if (group1[j] - group2[k] == 1) {
+            // Combine them
+            Implicant new_implicant = group1[j] + group2[k];
+            
+            // Check if this implicant already exists in next_groups[i]
+            bool exists = false;
+            for(const auto &existing : next_groups[i]) {
+              if (existing == new_implicant) {
+                exists = true;
                 break;
               }
             }
-            if (subset && terms1.size() < terms2.size()) {
-              used = true;
-              break;
+            
+            if (!exists) {
+              next_groups[i].push_back(new_implicant);
             }
+            
+            // Mark these implicants as used
+            used_in_groups[i].insert(j);
+            used_in_groups[i + 1].insert(k);
+            any_combined = true;
           }
-          if (used) break;
-        }
-        if (used) {
-          all_used.insert(impl);
         }
       }
+    }
+    
+    // Collect prime implicants (unused ones from current iteration)
+    for(size_t i = 0; i < current_groups.size(); i++) {
+      for(size_t j = 0; j < current_groups[i].size(); j++) {
+        // If this implicant was NOT used in combination, it's a prime
+        if (used_in_groups[i].find(j) == used_in_groups[i].end()) {
+          all_primes.insert(current_groups[i][j]);
+        }
+      }
+    }
+    
+    if (!any_combined) {
+      break; // No more combinations possible
     }
     
     current_groups = next_groups;
   }
   
-  // Collect final primes from current_groups
-  for(const auto &group : current_groups) {
-    for(const auto &impl : group) {
-      prime_set.insert(impl);
-    }
-  }
-  
   // Convert set to vector
   pe.clear();
-  for(const auto &impl : prime_set) {
+  for(const auto &impl : all_primes) {
     pe.push_back(impl);
   }
   
@@ -184,9 +185,7 @@ void QMMinimizer::minimize(vector<Implicant> &pe, vector<bool> &epi,
   epi.resize(pe.size(), false);
   epi_coverage.clear();
   
-  // Build coverage table
-  set<int> minterms_set(expression.minterms.begin(), expression.minterms.end());
-  
+  // Build coverage table - for each minterm, find which PIs cover it
   for(int minterm : expression.minterms) {
     vector<int> covering_pis;
     
@@ -219,7 +218,6 @@ void QMMinimizer::minimize(vector<Implicant> &pe, vector<bool> &epi,
     minimized_expressions.push_back(expr);
   }
 }
-
 /*
 Note: 
 This is a heuristic method; it does not actually implement Petrick's method. I will change
@@ -250,6 +248,4 @@ void QMMinimizer::petrick(const vector<Implicant> &pe, vector<bool>& epi, vector
       }
     }
   }
-
-  
 }

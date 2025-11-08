@@ -14,6 +14,7 @@ include_directories(${PROJECT_SOURCE_DIR}/utils)
 set(SOURCES
     src/main.cpp
     src/expression.cpp
+    src/file-parser.cpp
     src/implicant.cpp
     src/qm-minimizer.cpp
     src/verilog-generator.cpp
@@ -24,6 +25,7 @@ set(SOURCES
 # Header files (for IDE project generation)
 set(HEADERS
     include/expression.h
+    include/file-parser.h       
     include/implicant.h
     include/qm-minimizer.h
     include/verilog-generator.h
