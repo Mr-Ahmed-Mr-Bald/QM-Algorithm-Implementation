@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iomanip>
 #include <set>
+#include <limits>
 
 using namespace std;
 
@@ -22,7 +23,7 @@ bool QuineMcCluskeyDriver::load_from_file(const string& filename) {
     expression_loaded = true;
     minimization_done = false;
     
-    cout << "✓ File loaded successfully!\n";
+    cout << " File loaded successfully!\n";
     cout << "  Number of variables: " << expression.numberOfBits << "\n";
     cout << "  Minterms: ";
     for(size_t i = 0; i < expression.minterms.size(); i++) {
@@ -84,7 +85,7 @@ void QuineMcCluskeyDriver::run_minimization() {
     calculate_uncovered_minterms();
     
     minimization_done = true;
-    cout << "✓ Minimization completed!\n";
+    cout << "Minimization completed!\n";
 }
 
 void QuineMcCluskeyDriver::calculate_uncovered_minterms() {
@@ -110,7 +111,7 @@ void QuineMcCluskeyDriver::calculate_uncovered_minterms() {
 // Requirement 2: Generate and print all prime implicants
 void QuineMcCluskeyDriver::display_prime_implicants() const {
     if (!minimization_done) {
-        cout << "✗ Error: Run minimization first!\n";
+        cout << "Error: Run minimization first!\n";
         return;
     }
     
@@ -216,7 +217,7 @@ void QuineMcCluskeyDriver::display_essential_pis() const {
 // Requirement 4: Print minimized Boolean expression
 void QuineMcCluskeyDriver::display_minimized_expressions() const {
     if (!minimization_done) {
-        cout << "✗ Error: Run minimization first!\n";
+        cout << "Error: Run minimization first!\n";
         return;
     }
     
@@ -261,11 +262,47 @@ void QuineMcCluskeyDriver::display_all_results() const {
 
 void QuineMcCluskeyDriver::generate_verilog(const string& filename) {
     if (!minimization_done) {
-        cout << "✗ Error: Run minimization first!\n";
+        cout << "Error: Run minimization first!\n";
         return;
     }
 
     VerilogGenerator vgen(expression, prime_implicants, solution_indices);
+    
+    // Ask user for output style
+    cout << "\nSelect Verilog output style:\n";
+    cout << "1. Assign statement (dataflow)\n";
+    cout << "2. Always block (behavioral)\n";
+    cout << "3. Case statement\n";
+    cout << "4. Primitive gates (and, or, not) - PROJECT REQUIREMENT\n";
+    cout << "Enter choice (1-4, default 4): ";
+    
+    int style_choice = 4;  // Default to primitives
+    string input_line;
+    getline(cin, input_line);
+    
+    if (!input_line.empty()) {
+        try {
+            style_choice = stoi(input_line);
+        } catch (...) {
+            style_choice = 4;
+        }
+    }
+    
+    switch(style_choice) {
+        case 1:
+            vgen.set_output_style(VerilogGenerator::OutputStyle::Assign);
+            break;
+        case 2:
+            vgen.set_output_style(VerilogGenerator::OutputStyle::Always);
+            break;
+        case 3:
+            vgen.set_output_style(VerilogGenerator::OutputStyle::Case);
+            break;
+        case 4:
+        default:
+            vgen.set_output_style(VerilogGenerator::OutputStyle::Primitives);
+            break;
+    }
     
     string verilog_code = vgen.render_verilog();
     cout << "\n" << string(70, '=') << "\n";
@@ -279,7 +316,9 @@ void QuineMcCluskeyDriver::generate_verilog(const string& filename) {
         if (outfile.is_open()) {
             vgen.write_to_file(outfile);
             outfile.close();
-            cout << "✓ Verilog saved to: " << filename << "\n";
+            cout << "Verilog saved to: " << filename << "\n";
+        } else {
+            cout << "Error: Could not write to file: " << filename << "\n";
         }
     }
 }
@@ -326,13 +365,20 @@ void QuineMcCluskeyDriver::run_interactive() {
         cout << "===============================\n";
         cout << "Choice: ";
         cin >> choice;
+        
+        // Clear input buffer after reading choice
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         switch(choice) {
             case 1: {
                 string filename;
                 cout << "Enter filename: ";
-                cin >> filename;
-                load_from_file(filename);
+                getline(cin, filename);
+                if (!filename.empty()) {
+                    load_from_file(filename);
+                } else {
+                    cout << "Error: Filename cannot be empty!\n";
+                }
                 break;
             }
             case 2:
@@ -346,8 +392,7 @@ void QuineMcCluskeyDriver::run_interactive() {
                 break;
             case 5: {
                 string filename;
-                cout << "Enter output filename (or press Enter to skip): ";
-                cin.ignore();
+                cout << "Enter output filename (or press Enter to display only): ";
                 getline(cin, filename);
                 generate_verilog(filename);
                 break;

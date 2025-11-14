@@ -76,120 +76,120 @@ CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.obj: CMakeFiles/QM_Algor
 CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.obj: C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/main.cpp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\main.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\main.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\main.cpp
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\main.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\main.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\main.cpp
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\main.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\main.cpp.i
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\main.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\main.cpp.i
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\main.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\main.cpp.s
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\main.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\main.cpp.s
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/flags.make
 CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.obj: C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/expression.cpp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\expression.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\expression.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\expression.cpp
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\expression.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\expression.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\expression.cpp
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\expression.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\expression.cpp.i
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\expression.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\expression.cpp.i
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\expression.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\expression.cpp.s
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\expression.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\expression.cpp.s
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/flags.make
 CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.obj: C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/file-parser.cpp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\file-parser.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\file-parser.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\file-parser.cpp
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\file-parser.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\file-parser.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\file-parser.cpp
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\file-parser.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\file-parser.cpp.i
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\file-parser.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\file-parser.cpp.i
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\file-parser.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\file-parser.cpp.s
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\file-parser.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\file-parser.cpp.s
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/flags.make
 CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj: C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/implicant.cpp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\implicant.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\implicant.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\implicant.cpp
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\implicant.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\implicant.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\implicant.cpp
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\implicant.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\implicant.cpp.i
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\implicant.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\implicant.cpp.i
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\implicant.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\implicant.cpp.s
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\implicant.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\implicant.cpp.s
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/flags.make
 CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj: C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/qm-minimizer.cpp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\qm-minimizer.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\qm-minimizer.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\qm-minimizer.cpp
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\qm-minimizer.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\qm-minimizer.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\qm-minimizer.cpp
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\qm-minimizer.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\qm-minimizer.cpp.i
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\qm-minimizer.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\qm-minimizer.cpp.i
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\qm-minimizer.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\qm-minimizer.cpp.s
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\qm-minimizer.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\qm-minimizer.cpp.s
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/flags.make
 CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj: C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/verilog-generator.cpp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\verilog-generator.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\verilog-generator.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\verilog-generator.cpp
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\verilog-generator.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\verilog-generator.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\verilog-generator.cpp
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\verilog-generator.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\verilog-generator.cpp.i
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\verilog-generator.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\verilog-generator.cpp.i
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\verilog-generator.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\verilog-generator.cpp.s
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\verilog-generator.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\verilog-generator.cpp.s
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/flags.make
 CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj: C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/quine-mccluskey-driver.cpp
 CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\quine-mccluskey-driver.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\quine-mccluskey-driver.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\quine-mccluskey-driver.cpp
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\src\quine-mccluskey-driver.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\src\quine-mccluskey-driver.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\quine-mccluskey-driver.cpp
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\quine-mccluskey-driver.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\quine-mccluskey-driver.cpp.i
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\quine-mccluskey-driver.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\src\quine-mccluskey-driver.cpp.i
 
 CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\quine-mccluskey-driver.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\quine-mccluskey-driver.cpp.s
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\quine-mccluskey-driver.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\src\quine-mccluskey-driver.cpp.s
 
 CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/flags.make
 CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp
 CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj: C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/utils/verilog_utils.cpp
 CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj: CMakeFiles/QM_Algorithm_Implementation.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\utils\verilog_utils.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\utils\verilog_utils.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\utils\verilog_utils.cpp
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj -MF CMakeFiles\QM_Algorithm_Implementation.dir\utils\verilog_utils.cpp.obj.d -o CMakeFiles\QM_Algorithm_Implementation.dir\utils\verilog_utils.cpp.obj -c C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\utils\verilog_utils.cpp
 
 CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.i"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\utils\verilog_utils.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\utils\verilog_utils.cpp.i
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\utils\verilog_utils.cpp > CMakeFiles\QM_Algorithm_Implementation.dir\utils\verilog_utils.cpp.i
 
 CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.s"
-	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\utils\verilog_utils.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\utils\verilog_utils.cpp.s
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\utils\verilog_utils.cpp -o CMakeFiles\QM_Algorithm_Implementation.dir\utils\verilog_utils.cpp.s
 
 # Object files for target QM_Algorithm_Implementation
 QM_Algorithm_Implementation_OBJECTS = \
