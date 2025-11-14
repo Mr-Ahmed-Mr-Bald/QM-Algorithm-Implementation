@@ -386,8 +386,7 @@ For questions or issues related to this project:
 
 ## 🙏 Acknowledgments
 
-- Dr. [Instructor Name] for project guidance
-- The Quine-McCluskey algorithm originally developed by Willard Van Orman Quine and Edward J. McCluskey
+- Dr. Cherif Salama for project guidance
 - American University in Cairo, School of Sciences and Engineering
 
 ---
