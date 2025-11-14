@@ -218,17 +218,13 @@ void QMMinimizer::minimize(vector<Implicant> &pe, vector<bool> &epi,
     minimized_expressions.push_back(expr);
   }
 }
-/*
-Note: 
-This is a heuristic method; it does not actually implement Petrick's method. I will change
-that for the fully functional version.
-For now, it returns one valid solution, but not necessarily the minimal one.
-*/
+
+// Petrick's method to find minimal covering of remaining minterms
 void QMMinimizer::petrick(const vector<Implicant> &pe, vector<bool>& epi, vector<vector<int>>& solutions) {
+
+  // Identify minterms that still need to be covered
   set<int> to_be_covered(expression.minterms.begin(), expression.minterms.end());
-  solutions.resize(1);
-  int m = pe.size();
-  for(int i = 0; i < m; i++) {
+  for(int i = 0; i < int(pe.size()); i++) {
     if (epi[i]) {
       const auto& covered_terms = pe[i].get_covered_terms();
       for(int term : covered_terms) {
@@ -236,16 +232,155 @@ void QMMinimizer::petrick(const vector<Implicant> &pe, vector<bool>& epi, vector
           to_be_covered.erase(term);
         }
       }
-      solutions[0].push_back(i);
     }
   }
-  for(int term : to_be_covered) {
-    for(int i = 0; i < m; i++) {
-      const auto& covered_terms = pe[i].get_covered_terms();
-      if (std::find(covered_terms.begin(), covered_terms.end(), term) != covered_terms.end()) {
-        solutions[0].push_back(i);
-        break;
+
+  // Enumerate remaining minterms
+  int remaining = int(to_be_covered.size());
+  vector<int> order(remaining);
+  for(int i = 0, j = 0; i < (1<<numberOfBits); i++) {
+    if (to_be_covered.find(i) != to_be_covered.end()) {
+      order[i] = j++;
+    }
+  }
+
+  // Build the Petrick's method table
+  vector<vector<set<int>>> P(remaining);
+  for(int i = 0; i < int(pe.size()); i++) {
+    if (epi[i]) continue;
+    const auto& covered_terms = pe[i].get_covered_terms();
+    for(int term : covered_terms) {
+      if (to_be_covered.find(term) != to_be_covered.end()) {
+        P[order[term]].push_back({i});
       }
     }
   }
+
+  // Minimize product of sums
+  while(int(P.size()) > 1) {
+    vector<vector<set<int>>> new_P;
+    for(int i = 0; i < int(P.size()); i += 2) {
+      if (i + 1 < int(P.size())) {
+
+        // Get the common set of implicants between P[i] and P[i + 1]
+        // (X + Y)(X + Z) = X + YZ
+        vector<set<int>> common;
+        for(const auto &a : P[i]) {
+          for(const auto &b : P[i + 1]) {
+            if (a == b) common.push_back(a);
+          }
+        }
+
+        auto remove_common = [&](vector<set<int>> &from) {
+          from.erase(
+            remove_if(
+              from.begin(), from.end(),
+              [&](const set<int> &s) {
+                return find(common.begin(), common.end(), s) != common.end();
+              }
+            ), from.end()
+          );
+        };
+
+        // Remove common implicants from both P[i] and P[i + 1]
+        remove_common(P[i]);
+        remove_common(P[i + 1]);
+
+        // Now combine remaining implicants
+        for(const auto &a : P[i]) {
+          for(const auto &b : P[i + 1]) {
+            common.emplace_back(a);
+            common.back().insert(b.begin(), b.end());
+          }
+        }
+
+        // Multiply remaining implicants
+        auto multiplied = multiply(P[i], P[i + 1]);
+        // Merge common and multiplied
+        common.insert(common.end(), multiplied.begin(), multiplied.end());
+
+        // Remove duplicates
+        sort(common.begin(), common.end(),
+          [](const set<int> &s1, const set<int> &s2) {
+            return s1.size() < s2.size();
+          });
+
+        common.erase(
+          unique(common.begin(), common.end()),
+          common.end()
+        );
+
+        new_P.push_back(common);
+      } else {
+        new_P.push_back(P[i]);
+      }
+    }
+
+    P = new_P;
+  }
+
+  // Conver into sum of products
+  while(int(P.size()) > 1) {
+    auto multiplied = multiply(P[int(P.size()) - 2], P[int(P.size()) - 1]);
+    P.pop_back();
+    P.pop_back();
+    P.push_back(multiplied);
+  }
+
+  // Find the term with the least number of implicants
+  int min_size = INT_MAX;
+  for(const auto &s : P[0]) {
+    if (int(s.size()) < min_size) {
+      min_size = int(s.size());
+    }
+  }
+
+  for(const auto &s : P[0]) {
+    if (int(s.size()) == min_size) {
+      vector<int> solution(s.begin(), s.end());
+      for(int i = 0; i < int(pe.size()); i++) {
+        if (epi[i]) {
+          solution.push_back(i);
+        }
+      }
+      solutions.push_back(solution);
+    }
+  }
+}
+
+
+
+vector<set<int>> QMMinimizer::multiply(const vector<set<int>> &a, const vector<set<int>> &b) {
+  vector<set<int>> product;
+
+  for(const auto &set_a : a) {
+    for(const auto &set_b : b) {
+      set<int> combined = set_a;
+      combined.insert(set_b.begin(), set_b.end());
+      product.push_back(combined);
+    }
+  }
+
+  sort(product.begin(), product.end(),
+    [](const set<int> &s1, const set<int> &s2) {
+      return s1.size() < s2.size();
+    });
+
+  // Remove supersets
+  vector<set<int>> minimized;
+  for(const auto &s : product) {
+    bool is_superset = false;
+    for(const auto &m : minimized) {
+      if (includes(s.begin(), s.end(), m.begin(), m.end())) {
+        is_superset = true;
+        break;
+      }
+    }
+
+    if (!is_superset) {
+      minimized.push_back(s);
+    }
+  }
+
+  return minimized;
 }

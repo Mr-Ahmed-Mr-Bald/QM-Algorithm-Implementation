@@ -38,6 +38,9 @@ class QMMinimizer {
 
   // Destructor //
   ~QMMinimizer() = default;
+
+  private:
+  vector<set<int>> multiply(const vector<set<int>>&, const vector<set<int>>&);
 };
 
 #endif // QM_MINIMIZER_H
