@@ -386,7 +386,7 @@ For questions or issues related to this project:
 
 ## 🙏 Acknowledgments
 
-- Dr. Cherif Salama for project guidance
+- Dr. Cherif Salama for his support
 - American University in Cairo, School of Sciences and Engineering
 
 ---
