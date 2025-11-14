@@ -1,0 +1,19 @@
+# ninja log v6
+3	852	7848501922740636	CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.obj	d5391e20bd8381ea
+41	1018	7848501923121190	CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.obj	e74eb3798b888447
+24	1057	7848501922951034	CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.obj	bb2eb3f39f9ed427
+269	1183	7848501925394512	CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj	37f149566686cc3e
+61	1187	7848501923330713	CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj	27b6f98211cb0b9f
+235	1648	7848501925069859	CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj	ee27cde3ebfb1dff
+172	1656	7848501924432884	CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj	eab27b5262603fce
+120	2122	7848501923910638	CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj	bd8571c4110687be
+2122	2819	7848501943936609	D:/AUC/Semester Four/Digital Design I/QM-Algorithm-Implementation/build/QM_Algorithm_Implementation.exe	cbc19ac99a94048
+4	1111	7848505502950130	CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj	bd8571c4110687be
+1112	1676	7848505514027963	D:/AUC/Semester Four/Digital Design I/QM-Algorithm-Implementation/build/QM_Algorithm_Implementation.exe	cbc19ac99a94048
+4	1317	7848515052191586	CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj	bd8571c4110687be
+1318	1997	7848515065332279	D:/AUC/Semester Four/Digital Design I/QM-Algorithm-Implementation/build/QM_Algorithm_Implementation.exe	cbc19ac99a94048
+3	1141	7848519950281743	CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj	bd8571c4110687be
+1142	1708	7848519961656898	D:/AUC/Semester Four/Digital Design I/QM-Algorithm-Implementation/build/QM_Algorithm_Implementation.exe	cbc19ac99a94048
+18	782	7848527758367095	CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj	ee27cde3ebfb1dff
+3	1146	7848527758227173	CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj	bd8571c4110687be
+1146	1649	7848527769657188	D:/AUC/Semester Four/Digital Design I/QM-Algorithm-Implementation/build/QM_Algorithm_Implementation.exe	cbc19ac99a94048
