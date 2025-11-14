@@ -22,9 +22,10 @@ class VerilogGenerator {
 public:
   // Different styles for how we want the Verilog output to look
   enum class OutputStyle {
-    Assign,   // Basic style: "assign f = <expr>;"
-    Always,   // Uses always block: "always @(*) f = <expr>;"
-    Case      // Case-based style (good for wide outputs)
+    Assign,      // Basic style: "assign f = <expr>;"
+    Always,      // Uses always block: "always @(*) f = <expr>;"
+    Case,        // Case-based style (good for wide outputs)
+    Primitives   // Uses Verilog primitives (and, or, not gates)
   };
 
 private:
@@ -77,6 +78,18 @@ public:
 
   // Create a full Verilog module as a string (based on current settings)
   string render_verilog();
+  
+  // Create a Verilog module using primitive gates (and, or, not)
+  string render_verilog_primitives();
+  
+  // Create a Verilog module using assign statement
+  string render_verilog_assign();
+  
+  // Create a Verilog module using always block
+  string render_verilog_always();
+  
+  // Create a Verilog module using case statement
+  string render_verilog_case();
 
   // Write the generated Verilog module straight to a file
   void write_to_file(ofstream &outfile);

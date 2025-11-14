@@ -478,7 +478,7 @@ Example session:
 ----------------
 > 1
 Enter filename: ../testing/data/test1.txt
-✓ File loaded successfully!
+ File loaded successfully!
 
 > 2
 [Displays all prime implicants]
@@ -488,7 +488,7 @@ Enter filename: ../testing/data/test1.txt
 
 > 5
 Enter Verilog output filename (or press Enter for default): test1.v
-✓ Verilog module written to: test1.v
+Verilog module written to: test1.v
 
 > 6
 [Exits program]
