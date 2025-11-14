@@ -1,7 +1,5 @@
-#include "../include/qm-minimizer.h"
 #include "qm-minimizer.h"
-#include <algorithm>
-#include <set>
+
 
 // Constructors
 QMMinimizer::QMMinimizer(const Expression &expression) {
@@ -235,23 +233,26 @@ void QMMinimizer::petrick(const vector<Implicant> &pe, vector<bool>& epi, vector
     }
   }
 
-  // Enumerate remaining minterms
-  int remaining = int(to_be_covered.size());
-  vector<int> order(remaining);
-  for(int i = 0, j = 0; i < (1<<numberOfBits); i++) {
-    if (to_be_covered.find(i) != to_be_covered.end()) {
-      order[i] = j++;
+  if (to_be_covered.empty()) {
+    solutions.emplace_back();
+    for (int i = 0; i < int(pe.size()); i++) {
+      if (epi[i]) {
+        solutions[0].push_back(i);
+      }
     }
+    return;
   }
 
   // Build the Petrick's method table
+  int remaining = int(to_be_covered.size());
   vector<vector<set<int>>> P(remaining);
   for(int i = 0; i < int(pe.size()); i++) {
     if (epi[i]) continue;
     const auto& covered_terms = pe[i].get_covered_terms();
     for(int term : covered_terms) {
-      if (to_be_covered.find(term) != to_be_covered.end()) {
-        P[order[term]].push_back({i});
+      auto it = to_be_covered.find(term);
+      if (it != to_be_covered.end()) {
+        P[distance(to_be_covered.begin(), it)].push_back({i});
       }
     }
   }
@@ -260,8 +261,9 @@ void QMMinimizer::petrick(const vector<Implicant> &pe, vector<bool>& epi, vector
   while(int(P.size()) > 1) {
     vector<vector<set<int>>> new_P;
     for(int i = 0; i < int(P.size()); i += 2) {
+      assert(!P[i].empty());
       if (i + 1 < int(P.size())) {
-
+        assert(!P[i + 1].empty());
         // Get the common set of implicants between P[i] and P[i + 1]
         // (X + Y)(X + Z) = X + YZ
         vector<set<int>> common;
@@ -285,14 +287,6 @@ void QMMinimizer::petrick(const vector<Implicant> &pe, vector<bool>& epi, vector
         // Remove common implicants from both P[i] and P[i + 1]
         remove_common(P[i]);
         remove_common(P[i + 1]);
-
-        // Now combine remaining implicants
-        for(const auto &a : P[i]) {
-          for(const auto &b : P[i + 1]) {
-            common.emplace_back(a);
-            common.back().insert(b.begin(), b.end());
-          }
-        }
 
         // Multiply remaining implicants
         auto multiplied = multiply(P[i], P[i + 1]);

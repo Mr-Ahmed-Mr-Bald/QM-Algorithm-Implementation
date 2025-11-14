@@ -3,6 +3,9 @@
 
 // Standard Library Includes //
 #include <string>
+#include <map>
+#include <algorithm>
+#include <set>
 
 // Project Includes //
 #include "expression.h"
