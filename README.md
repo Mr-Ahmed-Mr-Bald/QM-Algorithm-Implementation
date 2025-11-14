@@ -344,8 +344,6 @@ The Quine-McCluskey algorithm proceeds in several phases:
 
 2. **Input Format Strictness**: The parser requires strict adherence to the 3-line format. Extra blank lines or improper formatting will cause errors (by design for error prevention).
 
-3. **Practical Variable Limit**: While theoretically supporting 20 variables, the practical limit is approximately 15 variables for worst-case scenarios.
-
 ## 🎯 Requirements Fulfillment
 
 | Requirement | Status | Notes |
