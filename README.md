@@ -287,9 +287,8 @@ American University in Cairo
 * **Ahmed Saad** – Data structures & minimization core
 * **Mahmoud Alaskandrani** – Verilog generator, integration
 * **Amonios Beshara** – Driver, I/O, documentation, testing
-
 ---
 ## 🙏 Acknowledgments
-****Dr. Cherif Salama for project support and guidance
-****American University in Cairo, School of Sciences and Engineering '
+- **Dr. Cherif Salama** for support and guidance  
+- **American University in Cairo**, School of Sciences and Engineering
 ---
