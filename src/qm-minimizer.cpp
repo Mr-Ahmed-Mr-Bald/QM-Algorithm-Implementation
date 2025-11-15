@@ -384,15 +384,12 @@ vector<set<int>> QMMinimizer::multiply(const vector<set<int>> &a, const vector<s
 }
 
 // Select minimal-cost solutions from a set of candidate solutions
-// Cost metric provided by user:
-// - NOT (inverter) cost = 2
-// - n-input AND or OR gate cost = 2*n + 2
-// We compute per-solution cost as: sum(AND_cost + NOTs for each implicant) + OR_cost(for combining implicants if more than one)
+// Cost metric: n-input AND or OR gate cost = 2*n + 2
+// NOT gates are not counted as they are considered negligible
+// We compute per-solution cost as: sum(AND_cost for each implicant) + OR_cost(for combining implicants if more than one)
 void QMMinimizer::select_min_cost_solutions(const vector<Implicant> &pe, const vector<vector<int>> &solutions, vector<vector<int>> &out_min_solutions) {
   out_min_solutions.clear();
   if (solutions.empty()) return;
-
-  const int NOT_COST = 2;
 
   vector<long long> costs;
   costs.reserve(solutions.size());
@@ -407,17 +404,10 @@ void QMMinimizer::select_min_cost_solutions(const vector<Implicant> &pe, const v
       auto prod = pe[idx].generate_product();
       int n_literals = static_cast<int>(prod.size());
 
-      // Count complemented literals (need explicit inverters)
-      int num_complements = 0;
-      for (const auto &p : prod) if (p.second) ++num_complements;
-
       // AND gate cost for this product: 2*n + 2 (where n = number of inputs)
       int and_cost = (n_literals > 0) ? (2 * n_literals + 2) : 0;
 
-      // NOT costs: assume each complemented literal implemented with its own inverter
-      int not_cost = num_complements * NOT_COST;
-
-      total += and_cost + not_cost;
+      total += and_cost;
     }
 
     // OR gate to combine product terms (if more than one product)
