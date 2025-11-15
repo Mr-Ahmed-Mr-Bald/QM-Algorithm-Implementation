@@ -1,6 +1,6 @@
 CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj: \
- C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\implicant.cpp \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/implicant.h \
+ C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\QM-Algorithm-Implementation\src\implicant.cpp \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/implicant.h \
  C:/msys64/ucrt64/include/c++/15.2.0/vector \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/requires_hosted.h \
  C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
@@ -120,4 +120,4 @@ CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/cerrno \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/charconv.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/basic_string.tcc \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/utils/enums.utils.h
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/utils/enums.utils.h

@@ -66,20 +66,23 @@ void QuineMcCluskeyDriver::run_minimization() {
     minimized_expressions.clear();
     solution_indices.clear();
     
-    qm.minimize(prime_implicants, essential_pis, epi_coverage, minimized_expressions);
-    
-    // Build solution indices for Verilog generator
-    for(const auto &min_expr : minimized_expressions) {
-        vector<int> indices;
-        for(const auto &impl : min_expr) {
-            for(size_t i = 0; i < prime_implicants.size(); i++) {
-                if (prime_implicants[i] == impl) {
-                    indices.push_back(i);
-                    break;
-                }
+    // Get minimized expressions and raw solution indices (from Petrick)
+    qm.minimize(prime_implicants, essential_pis, epi_coverage, minimized_expressions, solution_indices);
+
+    // Also compute minimal-cost solutions (based on literal count)
+    minimal_cost_solution_indices.clear();
+    minimal_cost_expressions.clear();
+    qm.select_min_cost_solutions(prime_implicants, solution_indices, minimal_cost_solution_indices);
+
+    // Build minimal_cost_expressions mapping indices -> Implicant objects
+    for(const auto &sol : minimal_cost_solution_indices) {
+        vector<Implicant> expr;
+        for(int idx : sol) {
+            if (idx >= 0 && idx < static_cast<int>(prime_implicants.size())) {
+                expr.push_back(prime_implicants[idx]);
             }
         }
-        solution_indices.push_back(indices);
+        minimal_cost_expressions.push_back(expr);
     }
     
     calculate_uncovered_minterms();
@@ -254,10 +257,51 @@ void QuineMcCluskeyDriver::display_minimized_expressions() const {
     cout << string(70, '=') << "\n";
 }
 
+void QuineMcCluskeyDriver::display_min_cost_expressions() const {
+    if (!minimization_done) {
+        cout << "Error: Run minimization first!\n";
+        return;
+    }
+
+    cout << "\n" << string(70, '=') << "\n";
+    cout << "4b. MINIMAL-COST MINIMIZED EXPRESSIONS (by literal count)" << "\n";
+    cout << string(70, '=') << "\n";
+
+    if (minimal_cost_expressions.empty()) {
+        cout << "   (no minimal-cost solutions computed)\n";
+    } else {
+        for(size_t sol = 0; sol < minimal_cost_expressions.size(); sol++) {
+            cout << "Solution " << (sol + 1) << ": F = ";
+
+            if (minimal_cost_expressions[sol].empty()) {
+                cout << "0";
+            } else {
+                for(size_t i = 0; i < minimal_cost_expressions[sol].size(); i++) {
+                    auto product = minimal_cost_expressions[sol][i].generate_product();
+                    if (product.empty()) {
+                        cout << "1";
+                    } else {
+                        for(size_t j = 0; j < product.size(); j++) {
+                            char var = 'A' + product[j].first;
+                            cout << var;
+                            if (product[j].second) cout << "'";
+                        }
+                    }
+                    if (i < minimal_cost_expressions[sol].size() - 1) cout << " + ";
+                }
+            }
+            cout << "\n";
+        }
+    }
+
+    cout << string(70, '=') << "\n";
+}
+
 void QuineMcCluskeyDriver::display_all_results() const {
     display_prime_implicants();
     display_essential_pis();
     display_minimized_expressions();
+    display_min_cost_expressions();
 }
 
 void QuineMcCluskeyDriver::generate_verilog(const string& filename) {
@@ -266,7 +310,8 @@ void QuineMcCluskeyDriver::generate_verilog(const string& filename) {
         return;
     }
 
-    VerilogGenerator vgen(expression, prime_implicants, solution_indices);
+    const vector<vector<int>> &vgen_solutions = minimal_cost_solution_indices.empty() ? solution_indices : minimal_cost_solution_indices;
+    VerilogGenerator vgen(expression, prime_implicants, vgen_solutions);
     
     // Ask user for output style
     cout << "\nSelect Verilog output style:\n";

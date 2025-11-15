@@ -18,6 +18,8 @@ private:
     vector<int> uncovered_minterms;
     vector<vector<Implicant>> minimized_expressions;
     vector<vector<int>> solution_indices;
+    vector<vector<int>> minimal_cost_solution_indices;
+    vector<vector<Implicant>> minimal_cost_expressions;
     
     bool expression_loaded;
     bool minimization_done;
@@ -40,6 +42,7 @@ public:
     void display_prime_implicants() const;        // Requirement 2
     void display_essential_pis() const;            // Requirement 3
     void display_minimized_expressions() const;    // Requirement 4
+    void display_min_cost_expressions() const; // Display minimal-cost solutions
     void display_all_results() const;              // Combined display
     
     // Verilog generation (bonus - requirement 5)

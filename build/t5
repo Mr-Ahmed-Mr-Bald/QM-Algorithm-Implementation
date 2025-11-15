@@ -1,0 +1,41 @@
+module minimized_module (
+    input x0, x1, x2, x3, x4,
+    output f
+);
+
+// Alternative minimized solutions:
+// Solution 1: (~x0 & ~x1 & x3 & x4) | (~x0 & x1 & ~x2 & x4) | (~x0 & x2 & ~x3 & x4) | (x0 & x1 & ~x4) | (~x1 & ~x2 & ~x4) | (x1 & x2 & x3 & ~x4)
+// Solution 2: (~x0 & ~x1 & x2 & x4) | (~x0 & x1 & ~x3 & x4) | (~x0 & ~x2 & x3 & x4) | (x0 & x1 & ~x4) | (~x1 & ~x2 & ~x4) | (x1 & x2 & x3 & ~x4)
+
+    // Internal wires
+    wire x0_n;
+    wire x1_n;
+    wire x2_n;
+    wire x3_n;
+    wire x4_n;
+    wire product0;
+    wire product1;
+    wire product2;
+    wire product3;
+    wire product4;
+    wire product5;
+
+    // NOT gates for inverted inputs
+    not(x0_n, x0);
+    not(x1_n, x1);
+    not(x2_n, x2);
+    not(x3_n, x3);
+    not(x4_n, x4);
+
+    // AND gates for product terms
+    and(product0, x0_n, x1_n, x3, x4);
+    and(product1, x0_n, x1, x2_n, x4);
+    and(product2, x0_n, x2, x3_n, x4);
+    and(product3, x0, x1, x4_n);
+    and(product4, x1_n, x2_n, x4_n);
+    and(product5, x1, x2, x3, x4_n);
+
+    // OR gate for sum of products
+    or(f, product0, product1, product2, product3, product4, product5);
+
+endmodule

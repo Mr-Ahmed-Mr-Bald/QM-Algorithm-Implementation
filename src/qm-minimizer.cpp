@@ -105,7 +105,8 @@ bool QMMinimizer::combine(vector<vector<Implicant>> &current_groups,
 
 void QMMinimizer::minimize(vector<Implicant> &pe, vector<bool> &epi, 
                           vector<int> &epi_coverage, 
-                          vector<vector<Implicant>> &minimized_expressions) {
+                          vector<vector<Implicant>> &minimized_expressions,
+                          vector<vector<int>> &solutions_indices) {
   // Step 1: Generate all prime implicants through iterative combination
   vector<vector<Implicant>> current_groups = implicant_groups;
   vector<vector<Implicant>> next_groups;
@@ -203,7 +204,10 @@ void QMMinimizer::minimize(vector<Implicant> &pe, vector<bool> &epi,
   // Step 3: Use Petrick's method to find minimal covering
   vector<vector<int>> solutions;
   petrick(pe, epi, solutions);
-  
+
+  // Return raw solution indices to caller
+  solutions_indices = solutions;
+
   // Convert solutions to implicant lists
   minimized_expressions.clear();
   for(const auto &sol : solutions) {
@@ -378,3 +382,64 @@ vector<set<int>> QMMinimizer::multiply(const vector<set<int>> &a, const vector<s
 
   return minimized;
 }
+
+// Select minimal-cost solutions from a set of candidate solutions
+// Cost metric provided by user:
+// - NOT (inverter) cost = 2
+// - n-input AND or OR gate cost = 2*n + 2
+// We compute per-solution cost as: sum(AND_cost + NOTs for each implicant) + OR_cost(for combining implicants if more than one)
+void QMMinimizer::select_min_cost_solutions(const vector<Implicant> &pe, const vector<vector<int>> &solutions, vector<vector<int>> &out_min_solutions) {
+  out_min_solutions.clear();
+  if (solutions.empty()) return;
+
+  const int NOT_COST = 2;
+
+  vector<long long> costs;
+  costs.reserve(solutions.size());
+
+  for (const auto &sol : solutions) {
+    long long total = 0;
+    int m = static_cast<int>(sol.size());
+
+    // Sum cost of each implicant (as an AND of literals)
+    for (int idx : sol) {
+      if (idx < 0 || idx >= static_cast<int>(pe.size())) continue;
+      auto prod = pe[idx].generate_product();
+      int n_literals = static_cast<int>(prod.size());
+
+      // Count complemented literals (need explicit inverters)
+      int num_complements = 0;
+      for (const auto &p : prod) if (p.second) ++num_complements;
+
+      // AND gate cost for this product: 2*n + 2 (where n = number of inputs)
+      int and_cost = (n_literals > 0) ? (2 * n_literals + 2) : 0;
+
+      // NOT costs: assume each complemented literal implemented with its own inverter
+      int not_cost = num_complements * NOT_COST;
+
+      total += and_cost + not_cost;
+    }
+
+    // OR gate to combine product terms (if more than one product)
+    if (m > 1) {
+      int or_cost = 2 * m + 2;
+      total += or_cost;
+    }
+
+    costs.push_back(total);
+  }
+
+  // Find minimum cost
+  long long min_cost = LLONG_MAX;
+  for (auto c : costs) if (c < min_cost) min_cost = c;
+
+  // Collect solutions with minimal cost
+  for (size_t i = 0; i < solutions.size(); ++i) {
+    if (costs[i] == min_cost) {
+      out_min_solutions.push_back(solutions[i]);
+    }
+  }
+}
+
+  
+  

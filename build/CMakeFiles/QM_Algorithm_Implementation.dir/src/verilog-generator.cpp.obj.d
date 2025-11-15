@@ -1,6 +1,6 @@
 CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj: \
- C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\verilog-generator.cpp \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/verilog-generator.h \
+ C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\QM-Algorithm-Implementation\src\verilog-generator.cpp \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/verilog-generator.h \
  C:/msys64/ucrt64/include/c++/15.2.0/string \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/requires_hosted.h \
  C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
@@ -152,7 +152,7 @@ CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_vector.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_bvector.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/vector.tcc \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/implicant.h \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/implicant.h \
  C:/msys64/ucrt64/include/c++/15.2.0/set \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_tree.h \
  C:/msys64/ucrt64/include/c++/15.2.0/ext/aligned_buffer.h \
@@ -164,9 +164,9 @@ CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_relops.h \
  C:/msys64/ucrt64/include/c++/15.2.0/cassert \
  C:/msys64/ucrt64/include/assert.h \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/utils/enums.utils.h \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/expression.h \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/utils/verilog_utils.h \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/utils/enums.utils.h \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/expression.h \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/utils/verilog_utils.h \
  C:/msys64/ucrt64/include/c++/15.2.0/sstream \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/sstream.tcc \
  C:/msys64/ucrt64/include/c++/15.2.0/algorithm \

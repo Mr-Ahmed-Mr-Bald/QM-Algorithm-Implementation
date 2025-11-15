@@ -1,6 +1,6 @@
 CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj: \
- C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\utils\verilog_utils.cpp \
- C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\utils\verilog_utils.h \
+ C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\QM-Algorithm-Implementation\utils\verilog_utils.cpp \
+ C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\QM-Algorithm-Implementation\utils\verilog_utils.h \
  C:/msys64/ucrt64/include/c++/15.2.0/string \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/requires_hosted.h \
  C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \

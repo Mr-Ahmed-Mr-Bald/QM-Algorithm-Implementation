@@ -1,6 +1,6 @@
 CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj: \
- C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\quine-mccluskey-driver.cpp \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/quine-mccluskey-driver.h \
+ C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\QM-Algorithm-Implementation\src\quine-mccluskey-driver.cpp \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/quine-mccluskey-driver.h \
  C:/msys64/ucrt64/include/c++/15.2.0/string \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/requires_hosted.h \
  C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
@@ -103,8 +103,8 @@ CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_vector.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_bvector.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/vector.tcc \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/expression.h \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/implicant.h \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/expression.h \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/implicant.h \
  C:/msys64/ucrt64/include/c++/15.2.0/set \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_tree.h \
  C:/msys64/ucrt64/include/c++/15.2.0/ext/aligned_buffer.h \
@@ -122,9 +122,20 @@ CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/cxxabi_init_exception.h \
  C:/msys64/ucrt64/include/c++/15.2.0/typeinfo \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/nested_exception.h \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/utils/enums.utils.h \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/qm-minimizer.h \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/verilog-generator.h \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/utils/enums.utils.h \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/qm-minimizer.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/map \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_map.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_multimap.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/algorithm \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_algo.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_heap.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/uniform_int_dist.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_tempbuf.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/pstl/execution_defs.h \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/verilog-generator.h \
  C:/msys64/ucrt64/include/c++/15.2.0/fstream \
  C:/msys64/ucrt64/include/c++/15.2.0/istream \
  C:/msys64/ucrt64/include/c++/15.2.0/ios \
@@ -168,8 +179,8 @@ CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h \
  C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/fstream.tcc \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/utils/verilog_utils.h \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/file-parser.h \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/utils/verilog_utils.h \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/file-parser.h \
  C:/msys64/ucrt64/include/c++/15.2.0/iostream \
  C:/msys64/ucrt64/include/c++/15.2.0/iomanip \
  C:/msys64/ucrt64/include/c++/15.2.0/locale \

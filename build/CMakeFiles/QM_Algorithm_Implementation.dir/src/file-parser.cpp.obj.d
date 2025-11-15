@@ -1,6 +1,6 @@
 CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.obj: \
- C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\file-parser.cpp \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/file-parser.h \
+ C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\QM-Algorithm-Implementation\src\file-parser.cpp \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/file-parser.h \
  C:/msys64/ucrt64/include/c++/15.2.0/string \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/requires_hosted.h \
  C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
@@ -98,7 +98,7 @@ CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/uses_allocator.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/uses_allocator_args.h \
  C:/msys64/ucrt64/include/c++/15.2.0/tuple \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/expression.h \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/expression.h \
  C:/msys64/ucrt64/include/c++/15.2.0/vector \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_uninitialized.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_vector.h \

@@ -36,8 +36,11 @@ class QMMinimizer {
   // [PIs], [EPIs], [Minimzed expressions as list of implicants]
   void petrick(const vector<Implicant>&, vector<bool>&, vector<vector<int>>&);
   // minimize
-  // [PIs], [EPIs], [EPIs coverage], [Minimzed expressions as list of implicants]
-  void minimize(vector<Implicant>&, vector<bool>&, vector<int>&, vector<vector<Implicant>>&); // AMONIOS
+  // [PIs], [EPIs], [EPIs coverage], [Minimzed expressions as list of implicants], [solutions as indices]
+  void minimize(vector<Implicant>&, vector<bool>&, vector<int>&, vector<vector<Implicant>>&, vector<vector<int>>&); // AMONIOS
+
+  // Select minimal-cost solutions from a set of candidate solutions (cost = total literal count)
+  void select_min_cost_solutions(const vector<Implicant>& pe, const vector<vector<int>>& solutions, vector<vector<int>>& out_min_solutions); //ASKANDRANI
 
   // Destructor //
   ~QMMinimizer() = default;

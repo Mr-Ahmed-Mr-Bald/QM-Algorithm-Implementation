@@ -1,50 +1,50 @@
 [
 {
-  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\main.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\origin\\src\\main.cpp",
-  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/main.cpp",
+  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\main.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\QM-Algorithm-Implementation\\src\\main.cpp",
+  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/src/main.cpp",
   "output": "CMakeFiles/QM_Algorithm_Implementation.dir/src/main.cpp.obj"
 },
 {
-  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\expression.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\origin\\src\\expression.cpp",
-  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/expression.cpp",
+  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\expression.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\QM-Algorithm-Implementation\\src\\expression.cpp",
+  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/src/expression.cpp",
   "output": "CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.obj"
 },
 {
-  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\file-parser.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\origin\\src\\file-parser.cpp",
-  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/file-parser.cpp",
+  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\file-parser.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\QM-Algorithm-Implementation\\src\\file-parser.cpp",
+  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/src/file-parser.cpp",
   "output": "CMakeFiles/QM_Algorithm_Implementation.dir/src/file-parser.cpp.obj"
 },
 {
-  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\implicant.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\origin\\src\\implicant.cpp",
-  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/implicant.cpp",
+  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\implicant.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\QM-Algorithm-Implementation\\src\\implicant.cpp",
+  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/src/implicant.cpp",
   "output": "CMakeFiles/QM_Algorithm_Implementation.dir/src/implicant.cpp.obj"
 },
 {
-  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\qm-minimizer.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\origin\\src\\qm-minimizer.cpp",
-  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/qm-minimizer.cpp",
+  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\qm-minimizer.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\QM-Algorithm-Implementation\\src\\qm-minimizer.cpp",
+  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/src/qm-minimizer.cpp",
   "output": "CMakeFiles/QM_Algorithm_Implementation.dir/src/qm-minimizer.cpp.obj"
 },
 {
-  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\verilog-generator.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\origin\\src\\verilog-generator.cpp",
-  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/verilog-generator.cpp",
+  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\verilog-generator.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\QM-Algorithm-Implementation\\src\\verilog-generator.cpp",
+  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/src/verilog-generator.cpp",
   "output": "CMakeFiles/QM_Algorithm_Implementation.dir/src/verilog-generator.cpp.obj"
 },
 {
-  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\quine-mccluskey-driver.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\origin\\src\\quine-mccluskey-driver.cpp",
-  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/src/quine-mccluskey-driver.cpp",
+  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\src\\quine-mccluskey-driver.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\QM-Algorithm-Implementation\\src\\quine-mccluskey-driver.cpp",
+  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/src/quine-mccluskey-driver.cpp",
   "output": "CMakeFiles/QM_Algorithm_Implementation.dir/src/quine-mccluskey-driver.cpp.obj"
 },
 {
-  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\utils\\verilog_utils.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\origin\\utils\\verilog_utils.cpp",
-  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/utils/verilog_utils.cpp",
+  "directory": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe  @CMakeFiles/QM_Algorithm_Implementation.dir/includes_CXX.rsp -g -std=c++17 -Wall -Wextra -pedantic -o CMakeFiles\\QM_Algorithm_Implementation.dir\\utils\\verilog_utils.cpp.obj -c C:\\Users\\mahmo\\OneDrive\\Desktop\\auc\\DD1\\Project\\QM-Algorithm-Implementation\\utils\\verilog_utils.cpp",
+  "file": "C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/utils/verilog_utils.cpp",
   "output": "CMakeFiles/QM_Algorithm_Implementation.dir/utils/verilog_utils.cpp.obj"
 }
 ]

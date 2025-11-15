@@ -1,6 +1,6 @@
 CMakeFiles/QM_Algorithm_Implementation.dir/src/expression.cpp.obj: \
- C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\origin\src\expression.cpp \
- C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/origin/include/expression.h \
+ C:\Users\mahmo\OneDrive\Desktop\auc\DD1\Project\QM-Algorithm-Implementation\src\expression.cpp \
+ C:/Users/mahmo/OneDrive/Desktop/auc/DD1/Project/QM-Algorithm-Implementation/include/expression.h \
  C:/msys64/ucrt64/include/c++/15.2.0/vector \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/requires_hosted.h \
  C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
