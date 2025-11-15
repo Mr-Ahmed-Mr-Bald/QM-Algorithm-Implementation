@@ -289,4 +289,5 @@ American University in Cairo
 * **Amonios Beshara** – Driver, I/O, documentation, testing
 
 ---
-## 🙏 Acknowledgments - Dr. Cherif Salama for project support and guidance - American University in Cairo, School of Sciences and Engineering ---
+## 🙏 Acknowledgments
+Dr. Cherif Salama for project support and guidance - American University in Cairo, School of Sciences and Engineering ---
